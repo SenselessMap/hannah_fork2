@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('vintage')->nullable();
-            $table->string('country')->nullable();
+            $table->string('millesime_produit')->nullable();
+            $table->string('pays_origine')->nullable();
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['vintage', 'country']);
+            $table->dropColumn(['millesime_produit', 'pays_origine']);
         });
     }
 };
