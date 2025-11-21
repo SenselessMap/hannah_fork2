@@ -150,12 +150,10 @@ GRAPHQL;
                         ]
                     );
                 }
-
                 Log::info("Page {$page} terminée pour la catégorie {$cat}, produits récupérés : ".count($items));
                 $page++;
             } while (count($items) === $taillePage);
         }
-
         return response()->json(['message' => 'Scraping complet terminé']);
     }
 }
