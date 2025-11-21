@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+Catalogue-v1.jsx
+FicheProduit-attente.jsx
