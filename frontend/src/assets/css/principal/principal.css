@@ -2,18 +2,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
-* {
-    margin: 0;
-    padding: 0;
-}
 
-
-p, span, a, button {
+p, span, a, button, select, option, input .bouton-vin {
     
     font-family: Poppins;
 }
 
 h1, h2, h3, h4, h5 {
     font-family: Merriweather;
+}
+
+
+
+/* Code pour enleve les spiners (flèches) des input number */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;    
+    width: 0 !important; 
+}
+
+
+input {
+  -moz-appearance: textfield;
+}
+
+/* Code pour centrer les placeholder */
+
+input:[type="number"] {
+  text-align: center !important;
 }
 
