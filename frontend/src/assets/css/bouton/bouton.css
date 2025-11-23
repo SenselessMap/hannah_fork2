@@ -21,3 +21,11 @@
 .boutons-div {
     margin-bottom: 50px;
 }
+/* bouton formulaire inscription et connexion*/
+.bouton-accent{
+    background-color:var(--couleur-accent);
+    @apply rounded-lg text-white p-2 mt-5 text-xl cursor-pointer  
+}
+.bouton-accent:hover{
+    background-color: var(--couleur-text)
+}

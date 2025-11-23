@@ -1,0 +1,5 @@
+/* couleur du texte*/
+.text-brown{
+    color:var(--couleur-text);
+    font-size: 18px;
+}
