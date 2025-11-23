@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\produitController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -27,6 +28,10 @@ Route::post('/inscription', [UserController::class, 'store']);
 
 Route::get('/produits', [produitController::class, 'index']);
 Route::get('/produits/{id}', [produitController::class, 'show']);
+
+// Routes d'authentification
+Route::post('/connexion', [AuthController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/deconnexion', [AuthController::class, 'destroy']);
 
 /*Route::middleware('auth:sanctum')->group(function () {
     Route::get('/celliers', [CellierController::class, 'index']);
