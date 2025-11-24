@@ -8,33 +8,22 @@ use App\Models\Cellier;
 
 class CellierController extends Controller
 {
-    /*public function index($userId)
-    {
-        $celliers = Cellier::where('user_id', $userId)->get();
-        return response()->json($celliers);
-    }*/
-
+   
     public function produits($cellierId) {
-        $cellier = Cellier::with('produits')->findOrFail($cellierId);
-        return response()->json($cellier->produits);
+        $celliers = Cellier::with('produits')->findOrFail($cellierId);
+        return response()->json($celliers->produits);
     }
 
-    public function index() {
-        $userId = 1; // utilisateur unique pour le moment
-        // Récupère tous les celliers de l'utilisateur avec leurs produits
-        $celliers = Cellier::with('produits')
-            ->where('user_id', $userId)
-            ->get();
+    public function index(Request $request) {
+        $user = $request->user(); // utilisateur connecté via Sanctum
+        $celliers = Cellier::with('produits')->where('user_id', $user->id)->get();
         return response()->json($celliers);
-    }
-
-    
+    }    
 
     public function afficherProduit($cellierId) {
         $cellier = Cellier::with('produits')->findOrFail($cellierId);
         return response()->json($cellier);
     } 
-
     
     public function ajouterProduit(Request $request, $cellierId) {
         $cellier = Cellier::findOrFail($cellierId);

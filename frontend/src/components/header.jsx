@@ -54,7 +54,7 @@ export default function Header() {
               <Link to="/compte" className="hover:text-red-950">
                 Gérer mon compte
               </Link>
-              <Link to="/cellier" className="hover:text-red-950">
+              <Link to="/celliers" className="hover:text-red-950">
                 Mon cellier
               </Link>
             </div>
@@ -137,7 +137,7 @@ export default function Header() {
                   <Link to="/compte" className="hover:text-red-950">
                     Gérer mon compte
                   </Link>
-                  <Link to="/cellier" className="hover:text-red-950">
+                  <Link to="/celliers" className="hover:text-red-950">
                     Gérer mon cellier
                   </Link>
                 </div>

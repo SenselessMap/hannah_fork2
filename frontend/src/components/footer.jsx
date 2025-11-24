@@ -38,7 +38,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li><a href="/Catalogue" className="hover:text-red-950">Catalogue</a></li>
-              <li><a href="/cellier" className="hover:text-red-950">Mes celliers</a></li>
+              <li><a href="/celliers" className="hover:text-red-950">Mes celliers</a></li>
               <li><a href="/compte" className="hover:text-red-950">Mon compte</a></li>
               <li><a href="/inscription" className="hover:text-red-950">Inscription</a></li>
               <li><a href="/connexion" className="hover:text-red-950">Connexion</a></li>

@@ -15,8 +15,8 @@ export default function App() {
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Auth />} />
         <Route path="/" element={<Catalogue />} />         
-        <Route path="/produit/:id" element={<FicheProduit />} />      
-        <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />      
+        <Route path="/produit/:id" element={<FicheProduit />} />
+        <Route path="/celliers" element={<CellierUtilisateur />} />
       </Routes>
       </div>
     </Layout>

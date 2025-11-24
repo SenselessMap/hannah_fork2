@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios"; // ton axios configuré avec baseURL, withCredentials et CSRF
 
 /**
  * Fonction qui affiche les détails d'un vin et qui affiche le formulaire d'ajout du vin sélectionné et qui permet d'ajouter le vin dans le cellier de l'utilisateur connecté. La quantité ajoutée est enregistrée dans la table pivot cellier_produit dans la colonne "quantite"
@@ -16,13 +16,27 @@ export default function FicheProduit({  }) {
 
     // Récupérer le produit
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/produits/${id}`)
+        api.get(`http://localhost:8000/api/produits/${id}`)
             .then(res => setProduit(res.data))
             .catch(err => console.error(err));
     }, [id]);
 
-    // Récupérer les celliers de l'utilisateur
+    // Récupérer les celliers de l'utilisateur connecté avec Sanctum
+
     useEffect(() => {
+        api.get("/celliers")
+            .then(res => {
+                const listeCelliers = Array.isArray(res.data) ? res.data : [];
+                setCelliers(listeCelliers);
+
+                if (listeCelliers.length > 0) {
+                    setCellierSelectionne(listeCelliers[0].id);
+                }
+            })
+            .catch(err => console.error("Erreur celliers:", err));
+    }, []);
+
+    /*useEffect(() => {
         const idUtilisateur = 1; // temporaire pour tester
         axios.get(`http://localhost:8000/api/users/${idUtilisateur}/celliers`)
             .then(res => {
@@ -33,7 +47,7 @@ export default function FicheProduit({  }) {
                 }
             })
             .catch(err => console.error(err));
-    }, []);
+    }, []);*/
 
     /**
      * Fonction qui ajoute un vin dans un cellier à partir d'un formulaire d'ajoute. Possibilité d'incrémenter ou décrémenter la quantité avant de soumettre.
@@ -42,7 +56,7 @@ export default function FicheProduit({  }) {
     const ajouterProduit = () => {
         if (!produit || !cellierSelectionne) return;
 
-        axios.post(`http://localhost:8000/api/celliers/${cellierSelectionne}/produits`, {
+        api.post(`http://localhost:8000/api/celliers/${cellierSelectionne}/produits`, {
             produit_id: produit.id,
             quantite: quantite
         })

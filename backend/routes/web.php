@@ -22,3 +22,8 @@ Route::get('/', function () {
 //Route::get('/scrape-all', [ScraperController::class, 'scrapeAll']);
 //Route::middleware('auth:sanctum')->get('/scrape-all', [ScraperController::class, 'scrapeAll']);
 Route::get('/scrape-test', [ScraperController::class, 'scrapeTest']);
+
+// Toutes les routes qui ne sont pas /api/... redirigent vers React, toujours mettre à la fin
+Route::get('/{any}', function () {
+    return view('app'); 
+})->where('any', '.*');
