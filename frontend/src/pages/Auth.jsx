@@ -1,7 +1,6 @@
 // importation des bibliothèques
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -13,23 +12,38 @@ export default function Auth() {
 
     const route = useNavigate();
     const localisation = useLocation();
+
+    // Récupérer les messages venant de Inscription.jsx et de BoutonDeconnexion.jsx 
     const message = localisation.state?.message;
+    const deconnexionMsg = localisation.state?.deconnexionMsg;
+
+    const [msgSucces, setMsgSucces] = useState(message || deconnexionMsg || "" );
+
+    // Faire disparaitre message après 5 secondes
+    useEffect(() =>{
+      if (msgSucces) {
+        const temps = setTimeout(() => {
+          setMsgSucces("");
+        }, 5000);
+        return () => clearTimeout(temps)
+      }
+    }, [msgSucces]);
 
     const gererSoumission = async (e) => {
       e.preventDefault();
       
-       // Connexion avec la requête du backend via axios
+      // Connexion avec la requête du backend via axios
     try {
-    const response = await axios.post("http://localhost:8000/api/connexion", {
-        email: courriel,
-        password: motDePasse,
+      const response = await axios.post("http://localhost:8000/api/connexion", {
+      email: courriel,
+      password: motDePasse,
       
       });
 
       // Conserver le token dans le LocalStorage
       localStorage.setItem("token", response.data.token);
 
-      // Ajouter les props de l'objet et vider les champs après soumission
+      // Vider les champs après soumission
       setCourriel('')
       setMotDePasse('')
       setErreurs({})
@@ -52,8 +66,8 @@ export default function Auth() {
       
   return (
     <section className="mt-30">
-      {message &&(
-        <p className="text-green-600 border p-2 m-2 rounded ">{message} </p>  
+      {msgSucces &&(
+        <p className="text-green-600 border p-2 m-2 rounded ">{msgSucces} </p>  
       )}
       <form className="flex flex-col space-y-4 p-4 bg-form rounded-lg" onSubmit={gererSoumission}>
         <h1 className="text-4xl font-bold">Se connecter</h1>
