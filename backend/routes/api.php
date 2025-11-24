@@ -44,3 +44,4 @@ Route::put('/celliers/{cellierId}/produits/{produitId}', [CellierController::cla
 Route::delete('/celliers/{cellierId}/produits/{produitId}', [CellierController::class, 'supprimerProduit']);
 
 Route::get('/celliers/{id}', [CellierController::class, 'afficherProduit']);
+Route::get('/couleurs', [ProduitController::class, 'getCouleurs']);
