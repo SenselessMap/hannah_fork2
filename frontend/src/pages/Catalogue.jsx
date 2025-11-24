@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getproduits } from "../api/produits";
 import { Link } from "react-router-dom";
-
+import Filtre from "../components/Filtre";
 
 /**
  * @param
@@ -12,6 +12,8 @@ export default function Catalogue() {
 const [produits, setproduits] = useState([]);
 const [pageCourante, setPageCourante] = useState(1);
 const [totalPages, setTotalPages] = useState(1);
+const [filter, setFilter] = useState("");
+
 
 const bouteillesParPage = 12;
 
@@ -38,6 +40,8 @@ const bouteillesParPage = 12;
   return (
     <div className="contenu">
 		<h1 className="mt-10 mb-6 text-4xl text-bold text-center">Catalogue</h1>
+
+		<Filtre filter={filter} setFilter={setFilter} />
 	
 		<div className="grilleBouteille">
 			{Array.isArray(produits) && produits.map((p) => (		
