@@ -33,11 +33,23 @@
 .boutons-div {
     margin-bottom: 50px;
 }
+
 /* bouton formulaire inscription et connexion*/
 .bouton-accent{
     background-color:var(--couleur-accent);
     @apply rounded-lg text-white p-2 mt-5 text-xl cursor-pointer  
 }
+
 .bouton-accent:hover{
     background-color: var(--couleur-text)
+}
+
+/* bouton supprimer et annuler*/
+.bouton-danger{
+    @apply bg-white border-2 border-red-900 p-1 rounded-lg cursor-pointer text-red-900 hover:bg-red-900 hover:text-white
+}
+
+/* bouton pour éditer*/
+.bouton-edit{
+    @apply bg-lime-700 p-1 rounded-lg cursor-pointer text-white hover:bg-lime-800 hover:text-white
 }

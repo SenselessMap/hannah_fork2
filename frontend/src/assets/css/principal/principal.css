@@ -3,30 +3,29 @@
 @import "tailwindcss";
 
 :root{
-    --couleur-accent: #96384F;
-    --couleur-text: #450C1B;
-    --couleur-form: #450c1b3e;
-    --couleur-fond: #559e0615;
-    --couleur-secondaire: #BF7A8C;
+  --couleur-accent: #96384F;
+  --couleur-text: #450C1B;
+  --couleur-form: #450c1b3e;
+  --couleur-fond: #559e0615;
+  --couleur-secondaire: #BF7A8C;
 }
 
 p, span, a, button, select, option, input .bouton-vin {
     
-    font-family: Poppins;
+  font-family: "Poppins", sans-serif;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: Merriweather;
+  font-family: Merriweather;
 }
 
 /* Code pour enleve les spiners (flèches) des input number */
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none !important;    
-    width: 0 !important; 
+  -webkit-appearance: none !important;    
+  width: 0 !important; 
 }
-
 
 input {
   -moz-appearance: textfield;
@@ -34,7 +33,7 @@ input {
 
 /* Code pour centrer les placeholder */
 
-input:[type="number"] {
+input[type="number"] {
   text-align: center !important;
 }
 
