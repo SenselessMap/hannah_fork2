@@ -6,6 +6,17 @@
     background-color: #96384F;
 }
 
+
+.bouton-vin-rosee {
+    background-color: #96384F;
+    color: white;
+}
+
+.bouton-vin-rosee:hover {
+    background-color: #E491A6;
+    color: #450C1B;
+}
+
 .bouton-rosee {  
     background-color: #E491A6;
 }
