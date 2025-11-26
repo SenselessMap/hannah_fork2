@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Catalogue from "./pages/Catalogue";
 import FicheProduit from "./pages/FicheProduit";
-import CellierUtilisateur from "./components/cellierUtilisateur";
+import CellierUtilisateur from "./components/CellierUtilisateur";
 import Layout from "./components/Layout";
 import Auth from "./pages/Auth";
 import Inscription from "./pages/Inscription";
