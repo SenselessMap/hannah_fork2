@@ -146,7 +146,6 @@ GRAPHQL;
             Log::error('Erreur API GraphQL', ['status' => $response->status(), 'body' => $response->body()]);
             return ['items' => [], 'total_count' => 0];
         }
-
         return $response->json('data.productSearch', ['items' => [], 'total_count' => 0]);
     }
 
