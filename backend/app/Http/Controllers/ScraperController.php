@@ -74,7 +74,7 @@ GRAPHQL;
 
 
     // GraphQL query
-    protected function productSearchQuery()
+    public function productSearchQuery()
     {
         return <<<'GRAPHQL'
 query productSearch($phrase: String!, $pageSize: Int, $currentPage: Int, $filter: [SearchClauseInput!]) {
