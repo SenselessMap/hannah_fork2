@@ -111,7 +111,7 @@ GRAPHQL;
     }
 
     // Scraper d'une page
-    protected function extrairePage(int $taillePage, int $pageCourante, array $filtres = [])
+    public function extrairePage(int $taillePage, int $pageCourante, int $facetId)
     {
         $variables = [
             'phrase' => '',
