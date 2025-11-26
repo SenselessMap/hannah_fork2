@@ -1,14 +1,14 @@
 // Importation des bibliothèques
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function CreerCellier() {
   const [nomCellier, setNomCellier] = useState("");
   const [erreurs, setErreurs] = useState({});
   const [message, setMessage] = useState("");
 
-  const navigation = useNavigate();
+
 
   const gererSoumission = async (e) => {
     e.preventDefault();
@@ -19,15 +19,13 @@ export default function CreerCellier() {
     try {
       const reponse = await axios.post("http://localhost:8000/api/celliers", {
         nom: nomCellier,
-        user_id: 1,  // temporaire, à remplacer par l'id authentifié
+        user_id: 1,  // Remplacez par l'ID de l'utilisateur connecté
       });
 
       setNomCellier("");
       setMessage(reponse.data.message || "Cellier créé avec succès !");
 
-     navigation("/cellier/confirmation", {
-  state: { message: reponse.data.message }
-});
+     
 
 
     } catch (error) {

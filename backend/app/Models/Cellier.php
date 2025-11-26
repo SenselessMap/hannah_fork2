@@ -9,12 +9,12 @@ class Cellier extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_usager', 'nom', 'description'];
+    protected $fillable = ['user_id', 'nom', 'description'];
 
     // Relation avec l'utilisateur
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_usager', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     // Relation avec les produits via la table pivot

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
+
 
 export default function AfficheCellier() {
 
@@ -117,10 +119,12 @@ export default function AfficheCellier() {
 
           </div>
 
-          <div className="w-full lg:w-1/2 p-4 rounded bg-gray-50">
-            <h2 className="text-xl font-bold mb-4">Formulaires et autres...</h2>
-            <p>À venir ...</p>
-          </div>
+          <Link
+  to="/cellier/creer"
+  className="mt-20 px-2 py-1 bg-red-950 text-white text-center rounded hover:bg-rose-800"
+>
+  Ajouter un cellier
+</Link>
 
         </div>
       </div>
