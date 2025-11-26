@@ -74,7 +74,7 @@ GRAPHQL;
 
 
     // GraphQL query
-    protected function productSearchQuery()
+    public function productSearchQuery()
     {
         return <<<'GRAPHQL'
 query productSearch($phrase: String!, $pageSize: Int, $currentPage: Int, $filter: [SearchClauseInput!]) {
@@ -111,13 +111,15 @@ GRAPHQL;
     }
 
     // Scraper d'une page
-    protected function extrairePage(int $taillePage, int $pageCourante, array $filtres = [])
+    public function extrairePage(int $taillePage, int $pageCourante, int $facetId)
     {
         $variables = [
             'phrase' => '',
             'pageSize' => $taillePage,
             'currentPage' => $pageCourante,
-            'filter' => $filtres
+            'filters' => [
+            "product_filter" => ["eq" => $facetId],  // Vin / Champagne / Mousseux
+            "visibility" => ["in" => ["2", "4"]]    ]
         ];
 
         $attempts = 0;
@@ -144,63 +146,7 @@ GRAPHQL;
             Log::error('Erreur API GraphQL', ['status' => $response->status(), 'body' => $response->body()]);
             return ['items' => [], 'total_count' => 0];
         }
-
         return $response->json('data.productSearch', ['items' => [], 'total_count' => 0]);
     }
 
-    // Scraper complet vins, champagnes et mousseux
-    public function scrapeAll()
-    {
-        $taillePage = 1000; // max SAQ
-        $categories = [
-            'produits/vin%',
-            'produits/champagne%',
-            'produits/mousseux%'
-        ];
-
-        foreach ($categories as $cat) {
-            $page = 1;
-            do {
-                $filtres = [
-                    ['attribute' => 'categoryPath', 'like' => $cat],
-                    ['attribute' => 'availability_front', 'in' => ['En ligne', 'En succursale']],
-                    ['attribute' => 'visibility', 'in' => ['Catalog', 'Catalog, Search']]
-                ];
-
-                $res = $this->extrairePage($taillePage, $page, $filtres);
-                $items = $res['items'] ?? [];
-                $total = $res['total_count'] ?? 0;
-
-                foreach ($items as $item) {
-                    $produit = $item['product'] ?? null;
-                    if (!$produit) continue;
-
-                    $image = $produit['image']['url'] ?? $produit['small_image']['url'] ?? $produit['thumbnail']['url'] ?? null;
-                    $price = $produit['price_range']['minimum_price']['final_price']['value'] ?? null;
-
-                    // Fusion custom_attributes + productView.attributes
-                    $attr1 = collect($produit['custom_attributes'] ?? [])->pluck('value', 'code');
-                    $attr2 = collect($item['productView']['attributes'] ?? [])->pluck('value', 'name');
-                    $allAttr = $attr1->merge($attr2);
-
-                    Produit::updateOrCreate(
-                        ['sku' => $produit['sku']],
-                        [
-                            'name' => $produit['name'],
-                            'image' => $image,
-                            'price' => $price,
-                            'pays_origine' => $allAttr['pays_origine'] ?? null,
-                            'couleur' => $allAttr['couleur'] ?? null,
-                            'identite_produit' => $allAttr['identite_produit'] ?? null,
-                            'millesime_produit' => $allAttr['millesime_produit'] ?? null,
-                            'category' => $cat
-                        ]
-                    );
-                }
-                Log::info("Page {$page} terminée pour la catégorie {$cat}, produits récupérés : " . count($items));
-                $page++;
-            } while (count($items) === $taillePage);
-        }
-        return response()->json(['message' => 'Scraping complet terminé']);
-    }
 }

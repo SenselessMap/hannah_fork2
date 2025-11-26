@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import api from "../api/axios"; // ton axios configuré avec baseURL, withCredentials et CSRF
 
 /**
- * Fonction qui affiche les détails d'un vin et qui affiche le formulaire d'ajout du vin sélectionné et qui permet d'ajouter le vin dans le cellier de l'utilisateur connecté. La quantité ajoutée est enregistrée dans la table pivot cellier_produit dans la colonne "quantite"
+ * Fonction fléchée qui affiche les détails d'un vin et qui affiche le formulaire d'ajout du vin sélectionné et qui permet d'ajouter le vin dans le cellier de l'utilisateur connecté. La quantité ajoutée est enregistrée dans la table pivot cellier_produit dans la colonne "quantite"
  * @param {*} param0 
  * @returns Retourne la fiche de détail d'un vin
  */
-export default function FicheProduit({  }) {
+ const FicheProduit = () => {
     const { id } = useParams();
     const [produit, setProduit] = useState(null);
     const [celliers, setCelliers] = useState([]);
@@ -132,3 +132,5 @@ export default function FicheProduit({  }) {
         </div>
     );
 }
+
+export default FicheProduit

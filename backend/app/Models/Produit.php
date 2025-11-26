@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produit extends Model
 {
     use HasFactory;
-    protected $fillable = ['sku', 'name', 'price', 'image', 'millesime_produit', 'pays_origine', 'couleur', 'identite_produit'];
+    protected $fillable = ['sku', 'name', 'categorie', 'price', 'image', 'millesime_produit', 'pays_origine', 'couleur', 'identite_produit'];
 
     public function celliers()
     {

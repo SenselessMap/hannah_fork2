@@ -18,6 +18,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
     }
 
+    protected $commands = [
+        \App\Console\Commands\ScrapeSaqCommand::class,
+    ];
+
     /**
      * Register the commands for the application.
      *
