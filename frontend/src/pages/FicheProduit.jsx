@@ -132,3 +132,5 @@ import api from "../api/axios"; // ton axios configuré avec baseURL, withCreden
         </div>
     );
 }
+
+export default FicheProduit
