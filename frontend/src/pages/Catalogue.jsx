@@ -62,14 +62,11 @@ const bouteillesParPage = 12;
 					<p>{p.identite_produit}</p>
 					<p>{Number(p.price).toFixed(2)} $</p>	
 					<div className="flex justify-between align-center">
-						<>
-							<Link key={p.id} to={`/produit/${p.id}`}>			
-								<button className="ajoutBouteille" id="ajoutBouteille"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" color="#000"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg><span></span>
-								</button>
+						<>							<Link key={p.id} to={`/produit/${p.id}`}>			
+							<button className="bouton-accent" id="ajoutBouteille"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" color="#fff"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg><span></span>
+							</button>
 							</Link>
-						</>
-						<button className="ajoutBouteille" id="ajoutBouteille"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" color="#000"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg> <span></span>
-						</button>
+						</>						
 					</div>
 					</div>
 				</div>				
