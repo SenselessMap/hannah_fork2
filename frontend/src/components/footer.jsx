@@ -1,6 +1,10 @@
-import { Linkedin, Instagram, Github, Facebook } from "lucide-react";
+import { Github } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
+
   return (
     <footer className="mt-20 bg-orange-50 text-red-950">
 
@@ -10,34 +14,64 @@ export default function Footer() {
         <h2 className="text-4xl font-serif mb-4">Vino</h2>
 
         <p className="text-sm leading-relaxed mb-8">
-          Découvrez, gérez et savourez vos bouteilles favorites.
+         Découvrez, gérez et savourez vos bouteilles favorites.
           Suivez vos celliers, explorez votre collection et profitez pleinement de l’univers du vin.
         </p>
 
-        {/* Icônes */}
-        <div className="flex justify-center gap-6 mt-6">
-          <a href="#" aria-label="LinkedIn"><Linkedin className="w-6 h-6 hover:scale-110 transition" /></a>
-          <a href="#" aria-label="GitHub"><Github className="w-6 h-6 hover:scale-110 transition" /></a>
-          <a href="#" aria-label="Instagram"><Instagram className="w-6 h-6 hover:scale-110 transition" /></a>
-          <a href="#" aria-label="Facebook"><Facebook className="w-6 h-6 hover:scale-110 transition" /></a>
+        {/* Icône GitHub */}
+        <div className="flex justify-center mt-6">
+          <a
+            href="https://github.com/Equipe-MCHNC/graphql-laravel-react"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub du projet"
+            className="hover:scale-110 transition"
+          >
+            <Github className="w-8 h-8" />
+          </a>
         </div>
 
       </div>
 
-      {/* NAVIGATION BAS */}
+      {/* SECTION LIENS NAVIGATION (dynamique selon état de connexion) */}
       <div className="border-t border-red-200 py-8">
         <nav className="flex flex-wrap justify-center gap-6 text-sm font-medium">
-          <a href="/" className="hover:text-red-700">Catalogue</a>
-          <a href="/celliers" className="hover:text-red-700">Mes celliers</a>
-          <a href="/compte" className="hover:text-red-700">Mon compte</a>
-          <a href="/inscription" className="hover:text-red-700">Inscription</a>
-          <a href="/connexion" className="hover:text-red-700">Connexion</a>
+
+          <Link to="/" className="hover:text-red-700">Catalogue</Link>
+
+          {/* === Connecté === */}
+          {token && user && (
+            <>
+              <Link to="/celliers" className="hover:text-red-700">Mes celliers</Link>
+              <Link to="/compte" className="hover:text-red-700">Mon compte</Link>
+
+              <button
+                className="text-red-950 hover:text-red-700"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("user");
+                  window.location.reload();
+                }}
+              >
+                Déconnexion
+              </button>
+            </>
+          )}
+
+          {/* === Non connecté === */}
+          {(!token || !user) && (
+            <>
+              <Link to="/inscription" className="hover:text-red-700">Inscription</Link>
+              <Link to="/connexion" className="hover:text-red-700">Connexion</Link>
+            </>
+          )}
+
         </nav>
       </div>
 
       {/* BAS DE PAGE */}
       <div className="bg-red-950 text-white text-center py-4 text-xs sm:text-sm">
-        © 2025 Vino — Tous droits réservés.
+        © 2025 Vino — Tous droits reservés.
       </div>
 
     </footer>
