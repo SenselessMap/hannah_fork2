@@ -47,13 +47,17 @@ class ScrapeJob implements ShouldQueue
 
                     $image = $produit['image']['url'] ?? $produit['small_image']['url'] ?? $produit['thumbnail']['url'] ?? null;
                     $price = $produit['price_range']['minimum_price']['final_price']['value'] ?? null;
-                    $description = $produit['description'];
 
                     $attr1 = collect($produit['custom_attributes'] ?? [])->pluck('value', 'code');
                     $attr2 = collect($item['productView']['attributes'] ?? [])
                         ->groupBy('name')
                         ->map(fn($group) => $group->pluck('value')->implode(' | '));
                     $allAttr = $attr1->merge($attr2);
+
+                    $description = $produit['description']
+                    ?? collect($produit['custom_attributes'] ?? [])
+                        ->firstWhere('code', 'description')['value']
+                    ?? null;
 
                     $valeursAutorisees = ['vin','champagne','mousseux','vin dessert','vin de glace'];
                     $identite = strtolower($attr1['identite_produit'] ?? $attr2['identite_produit'] ?? '');
