@@ -82,6 +82,7 @@ export default function CompteUsager() {
       });
 
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
 
       // Redirige vers la page connexion avec message de succès
       route('/connexion', {
