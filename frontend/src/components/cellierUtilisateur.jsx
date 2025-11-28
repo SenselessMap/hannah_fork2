@@ -4,6 +4,9 @@ import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 
+
+
+
 export default function AfficheCellier() {
 
     const [celliers, setCelliers] = useState([]);
@@ -51,6 +54,7 @@ export default function AfficheCellier() {
             alert("Erreur lors de la mise à jour du vin !");
         }
     };
+
 
     return (
       <div className="flex justify-center px-3 py-4">
@@ -129,4 +133,6 @@ export default function AfficheCellier() {
           
       </div>
     );
+
+    
 }

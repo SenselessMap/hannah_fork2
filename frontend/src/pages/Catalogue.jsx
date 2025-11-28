@@ -47,10 +47,12 @@ const bouteillesParPage = 12;
 	};
 
   return (
+
 	  <div className="contenu">        
 		<p className="flex justify-end mb-15 text-sm">{user ? `Bienvenue  ${user.name} !` : ""}</p>
+
 		<h1 className="mt-10 mb-6 text-4xl text-bold text-center">Catalogue</h1>
-	 <Filtre filtre={filtre} setFiltre={setFiltre} ordre={ordre} setOrdre={setOrdre} setproduits={setproduits}/>
+	    <Filtre filtre={filtre} setFiltre={setFiltre} ordre={ordre} setOrdre={setOrdre} setproduits={setproduits}/>
 		
 		<div className="grilleBouteille">
 			{Array.isArray(produits) && produits.map((p) => (
