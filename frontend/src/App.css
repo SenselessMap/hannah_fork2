@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import './assets/css/principal/principal';
+@import './assets/css/exception/exception';
 @import './assets/css/grille/grille';
 @import './assets/css/carte/carte';
 @import './assets/css/image/image';

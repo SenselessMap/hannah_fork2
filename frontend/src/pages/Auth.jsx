@@ -55,10 +55,8 @@ export default function Auth() {
 
       // Redirige vers la page catalogue avec message de succès
       route('/', {
-        state:{ message: "Connexion réussie !" }
+        state:{message: response.data.message }
       });
-
-   
 
       // Affiche les erreurs de validation
     } catch (error) {
@@ -104,13 +102,13 @@ export default function Auth() {
           />
           {erreurs.password && <p className="text-red-500 pt-2">{erreurs.password[0]}</p>}
         </div>
-      <div className="flex items-center gap-2">
+      <div className="quarantaine flex items-center gap-2">
         <input className="w-4 h-4 checked:bg-blue-600 " type="checkbox" />
-        <label className="text-sm" htmlFor="souvenirDeMoi">Se souvenir de moi</label>
+        <label className=" text-sm" htmlFor="souvenirDeMoi">Se souvenir de moi</label>
       </div>
         <input className="bouton-accent" type="submit" value="Se connecter" />
         <Link className="underline mt-4 text-sm" to="/inscription">Pas encore membre? S'inscrire</Link>
-        <Link className="underline text-sm" to="/inscription">Mot de passe oublié?</Link>
+        <Link className="quarantaine underline text-sm" to="/inscription">Mot de passe oublié?</Link>
       </form>
    </section>
   );

@@ -1,11 +1,11 @@
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 px-4 py-6">
+      <main className="flex-1 px-4">
         {children}
       </main>
       <Footer />

@@ -6,7 +6,7 @@ export default function Footer() {
   const token = localStorage.getItem("token");
 
   return (
-    <footer className="mt-20 bg-orange-50 text-red-950">
+    <footer className="mt-20 bg-stone-200 text-red-950">
 
       {/* SECTION HAUT — TITRE & DESCRIPTION */}
       <div className="text-center px-6 py-12 max-w-3xl mx-auto">
@@ -20,21 +20,25 @@ export default function Footer() {
 
         {/* Icône GitHub */}
         <div className="flex justify-center mt-6">
-          <a
-            href="https://github.com/Equipe-MCHNC/graphql-laravel-react"
+          <Link
+            to="https://github.com/Equipe-MCHNC/graphql-laravel-react"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub du projet"
             className="hover:scale-110 transition"
           >
             <Github className="w-8 h-8" />
-          </a>
+          </Link>
         </div>
 
       </div>
 
+
+      {/* NAVIGATION BAS */}
+      <div className="border-t border-gray-300 shadow py-8">
+
       {/* SECTION LIENS NAVIGATION (dynamique selon état de connexion) */}
-      <div className="border-t border-red-200 py-8">
+  
         <nav className="flex flex-wrap justify-center gap-6 text-sm font-medium">
 
           <Link to="/" className="hover:text-red-700">Catalogue</Link>
