@@ -72,15 +72,24 @@ class ProduitController extends Controller
         }
     }
 
-        /**
-     * @param string, la couleur que l'on veut afficher
-     * @return array d'object, de tout les vins qui seront affichés
+    /**
+     * @param string, la couleur que lon veut afficher
+     * @return array d'object, les vins paginés qui seront affichés
      */
-    public function getProduitsParCouleur($identite_produit)
+    public function getProduitsParCouleur(Request $request, $identite_produit)
     {
         try {
-            $produits = Produit::where('identite_produit', $identite_produit)->get();
-            return response()->json($produits);
+            $limit = $request->get('limit', 12); //la page a 12
+            
+            $produits = Produit::where('identite_produit', $identite_produit)
+                            ->paginate($limit); 
+            return response()->json([
+                'data' => $produits->items(), 
+                'current_page' => $produits->currentPage(),
+                'last_page' => $produits->lastPage(),
+                'per_page' => $produits->perPage(),
+                'total' => $produits->total(),
+            ]);
         } catch (\Exception $erreur) {
             return response()->json(['erreur' => $erreur->getMessage()], 500);
         }
@@ -99,11 +108,22 @@ class ProduitController extends Controller
         }
     }
 
-    public function getProduitsParPays($pays)
+    public function getProduitsParPays(Request $request, $pays)
     {
         try {
-            $produits = Produit::where('pays_origine', $pays)->get();
-            return response()->json($produits);
+            $limit = $request->get('limit', 12);
+            
+            // paginate() a la place de get()
+            $produits = Produit::where('pays_origine', $pays)
+                            ->paginate($limit);
+
+            return response()->json([
+                'data' => $produits->items(), 
+                'current_page' => $produits->currentPage(),
+                'last_page' => $produits->lastPage(),
+                'per_page' => $produits->perPage(),
+                'total' => $produits->total(),
+            ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
