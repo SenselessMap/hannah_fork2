@@ -1,8 +1,13 @@
 import axios from "axios";
 
 const api = axios.create({
+<<<<<<< Updated upstream
   baseURL: "http://localhost:8000/api",
   // baseURL: "https://e2495553.webdevmaisonneuve.ca/api",
+=======
+  //baseURL: "http://localhost:8000/api",
+  baseURL: "https://e2195524.webdevmaisonneuve.ca/api",
+>>>>>>> Stashed changes
   headers: { "X-Requested-With": "XMLHttpRequest" },
   withCredentials: true, // très important !
 });
@@ -10,9 +15,10 @@ const api = axios.create({
 // Ajoute le token à chaque requête
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
+  console.log(token);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
-  }
+  } 
   return config;
 });
 
