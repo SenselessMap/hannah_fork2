@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import axiosClient from "../api/axios";
 
-export default function Filtre({ filtre, setFiltre, ordre, setOrdre, setproduits }) {
-	/*const [couleurs, setCouleurs] = useState([]);*/
+//export default function Filtre({ filtre, setFiltre, ordre, setOrdre, setproduits }) {
+export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
+/*const [couleurs, setCouleurs] = useState([]);*/
 	const [identites, setIdentites] = useState([]);
 	const [open, setOuvert] = useState(false);
 	const [openOrder, setOuvertOrdre] = useState(false);
@@ -41,7 +42,7 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre, setproduits
 	useEffect(() => {
 		axiosClient.get("/pays").then(res => setPays(res.data));
 	}, []);
-
+	/*
 	useEffect(() => {
 		if (!ordre) return;
 
@@ -56,7 +57,7 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre, setproduits
 			return sorted;
 		});
 	}, [ordre, setproduits]);
-
+*/
 
 	// Detection de click hors du dropdown
 	useEffect(() => {
@@ -113,6 +114,7 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre, setproduits
 								key={o}
 								className="option"
 								onClick={() => { setOrdre(o); setOuvertOrdre(false); }}
+								
 							>
 								{o}
 							</li>

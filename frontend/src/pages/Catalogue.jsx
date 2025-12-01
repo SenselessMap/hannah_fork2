@@ -24,11 +24,11 @@ const bouteillesParPage = 12;
 	// Quand un filtre est choisi, on met la page à 1
 	useEffect(() => {
 		setPageCourante(1);
-	}, [filtre]);
+	}, [filtre, ordre]);
 
 
 	useEffect(() => {
-		getproduits(pageCourante, bouteillesParPage, filtre)
+		getproduits(pageCourante, bouteillesParPage, filtre, ordre)
 			.then((res) => {
 				// API retourne tjrs un objet (quand on load ou change de page) (res.data) 
 				const data = res.data;
@@ -37,7 +37,7 @@ const bouteillesParPage = 12;
 				setTotalPages(data.last_page || 1); 
 			})
 			.catch((err) => console.error("Erreur API :", err));
-	}, [pageCourante, filtre]);
+	}, [pageCourante, filtre, ordre]);
 
 
 

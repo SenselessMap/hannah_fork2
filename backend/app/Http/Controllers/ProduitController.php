@@ -14,27 +14,31 @@ class ProduitController extends Controller
          * Fonction qui affiche toutes les bouteilles du catalogue, si la bouteille a une couleur, on l'affiche. On ajoute une pagination de 12 bouteilles par page, on peut avancer, reculer, aller à la fin ou au début de la pagination.
          */
 
-        public function index(Request $request) {
+    public function index(Request $request) {
         $couleur = $request->get('couleur');
+        $ordre = $request->get('ordre');
+        $limit = $request->get('limit', 12);
 
         $query = Produit::query();
 
         if ($couleur) {
-            $query->where('couleur', 'like', "%{$couleur}%");
+            $query->where('identite_produit', 'like', "%{$couleur}%");
         }
+        
+
+        $query = $this->ordonnerCatalogue($query, $ordre);
 
         try {
+            $vins = $query->paginate($limit); // Pagination laravel
 
-        $vins = $query->paginate(12); // Laravel pagination
-
-        // Retour JSON pour React
-        return response()->json([
-            'data' => $vins->items(), // produits actuels
-            'current_page' => $vins->currentPage(),
-            'last_page' => $vins->lastPage(),
-            'per_page' => $vins->perPage(),
-            'total' => $vins->total(),
-        ]);
+            // Retour JSON pour React
+            return response()->json([
+                'data' => $vins->items(), 
+                'current_page' => $vins->currentPage(),
+                'last_page' => $vins->lastPage(),
+                'per_page' => $vins->perPage(),
+                'total' => $vins->total(),
+            ]);
         } catch (\Exception $erreur) {
             return response()->json(['erreur' => $erreur->getMessage()], 500);
         }
@@ -79,10 +83,16 @@ class ProduitController extends Controller
     public function getProduitsParCouleur(Request $request, $identite_produit)
     {
         try {
-            $limit = $request->get('limit', 12); //la page a 12
+            $limit = $request->get('limit', 12);
+            $ordre = $request->get('ordre'); 
             
-            $produits = Produit::where('identite_produit', $identite_produit)
-                            ->paginate($limit); 
+            $query = Produit::where('identite_produit', $identite_produit);
+            
+            $query = $this->ordonnerCatalogue($query, $ordre);
+            
+            $produits = $query->paginate($limit); 
+
+            // Return
             return response()->json([
                 'data' => $produits->items(), 
                 'current_page' => $produits->currentPage(),
@@ -112,10 +122,13 @@ class ProduitController extends Controller
     {
         try {
             $limit = $request->get('limit', 12);
+            $ordre = $request->get('ordre'); 
             
-            // paginate() a la place de get()
-            $produits = Produit::where('pays_origine', $pays)
-                            ->paginate($limit);
+            $query = Produit::where('pays_origine', $pays);
+            
+            $query = $this->ordonnerCatalogue($query, $ordre);
+            
+            $produits = $query->paginate($limit);
 
             return response()->json([
                 'data' => $produits->items(), 
@@ -127,6 +140,31 @@ class ProduitController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    /**
+     * Cette fonction ordonne le catalogue filtré. Cela devait être server-side
+     */
+    private function ordonnerCatalogue($query, $ordre)
+    {
+        switch ($ordre) {
+            case 'Millésime (Croissant)':
+                $query->orderBy('millesime_produit', 'asc');
+                break;
+            case 'Millésime (Décroissant)':
+                $query->orderBy('millesime_produit', 'desc');
+                break;
+            case 'Prix (Croissant)':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'Prix (Décroissant)':
+                $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query->orderBy('id', 'desc'); 
+                break;
+        }
+        return $query;
     }
 
 }
