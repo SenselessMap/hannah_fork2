@@ -15,16 +15,19 @@ class ProduitController extends Controller
          */
 
     public function index(Request $request) {
-        $couleur = $request->get('couleur');
+        $identite = $request->get('identite');
+        $pays = $request->get('pays');
         $ordre = $request->get('ordre');
         $limit = $request->get('limit', 12);
 
         $query = Produit::query();
 
-        if ($couleur) {
-            $query->where('identite_produit', 'like', "%{$couleur}%");
+        if ($identite) {
+            $query->where('identite_produit', $identite);
         }
-        
+        if ($pays) {
+            $query->where('pays_origine', $pays); 
+        }
 
         $query = $this->ordonnerCatalogue($query, $ordre);
 

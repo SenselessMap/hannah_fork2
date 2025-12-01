@@ -13,7 +13,7 @@ const Catalogue = () => {
 const [produits, setproduits] = useState([]);
 const [pageCourante, setPageCourante] = useState(1);
 const [totalPages, setTotalPages] = useState(1);
-const [filtre, setFiltre] = useState("");
+const [filtre, setFiltre] = useState({ identite: null, pays: null });
 const [ordre, setOrdre] = useState("asc");
 
 // Obtenir les infos de l'usager 

@@ -1,7 +1,7 @@
 import api from "./axios";
 
 export function getproduits(page, limit, filtre, ordre) { 
-  const params = { page, limit, ordre }; 
+  const params = { page, limit, ordre , identite: filtre.identite, pays: filtre.pays }; 
 
   if (filtre?.type === "identite") {
     return api.get(`/produits/couleur/${filtre.value}`, {

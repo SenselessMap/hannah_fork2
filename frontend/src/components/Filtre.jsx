@@ -80,7 +80,7 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
 				className={`custom-select ${open ? "open" : ""}`}
 				onClick={() => setOuvert(!open)}
 			>
-				<div className="selected">{filtre?.type === "identite" ? filtre.value : "Filtrez par identité"}</div>
+				<div className="selected">{filtre.identite || "Filtrez par identité"}</div>
 
 				{open && (
 				<ul className="options">
@@ -90,7 +90,7 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
 						className="option" 
 						onClick={(e) => { 
 						e.stopPropagation(); 
-						setFiltre({ type: "identite", value: i }); 
+						setFiltre(prev => ({ ...prev, identite: i }));
 						setOuvert(false); 
 						}}
 					>
@@ -142,7 +142,7 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
 								className="option"
 								onClick={(e) => {
 									e.stopPropagation();
-									setFiltre({ type: "pays", value: p });
+									setFiltre(prev => ({ ...prev, pays: p }));
 									setOpenPays(false);
 								}}
 							>
