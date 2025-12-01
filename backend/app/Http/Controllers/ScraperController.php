@@ -1,17 +1,17 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Produit;
 use Illuminate\Support\Facades\Log;
-
+ 
 class ScraperController extends Controller
 {
     protected $endpoint;
     protected $headers;
-
+ 
     public function __construct()
     {
         $this->endpoint = config('services.saq.graphql_url');
@@ -25,7 +25,7 @@ class ScraperController extends Controller
             'User-Agent' => 'Laravel-Scraper/1.0',
         ];
     }
-
+ 
     public function scrapePage($taillePage = 12, $pageCourante = 1)
     {
         $query = <<<'GRAPHQL'
@@ -58,7 +58,7 @@ query ($pageSize: Int, $currentPage: Int) {
   }
 }
 GRAPHQL;
-
+ 
         $response = Http::withHeaders($this->headers)
             ->post($this->endpoint, [
                 'query' => $query,
@@ -67,12 +67,12 @@ GRAPHQL;
                     "currentPage" => $pageCourante
                 ]
             ]);
-
+ 
         return $response->json();
     }
-
-
-
+ 
+ 
+ 
     // GraphQL query
     public function productSearchQuery()
     {
@@ -109,7 +109,7 @@ query productSearch($phrase: String!, $pageSize: Int, $currentPage: Int, $filter
 }
 GRAPHQL;
     }
-
+ 
     // Scraper d'une page
     public function extrairePage(int $taillePage, int $pageCourante, int $facetId)
     {
@@ -121,7 +121,7 @@ GRAPHQL;
             "product_filter" => ["eq" => $facetId],  // Vin / Champagne / Mousseux
             "visibility" => ["in" => ["2", "4"]]    ]
         ];
-
+ 
         $attempts = 0;
         do {
             $attempts++;
@@ -132,7 +132,7 @@ GRAPHQL;
                     'query' => $this->productSearchQuery(),
                     'variables' => $variables
                 ]);
-
+ 
             if ($response->status() == 429) {
                 $wait = $response->header('Retry-After', 2);
                 Log::info("Throttling détecté, attente de {$wait}s");
@@ -141,12 +141,12 @@ GRAPHQL;
                 break;
             }
         } while ($attempts < 5);
-
+ 
         if (!$response->successful()) {
             Log::error('Erreur API GraphQL', ['status' => $response->status(), 'body' => $response->body()]);
             return ['items' => [], 'total_count' => 0];
         }
         return $response->json('data.productSearch', ['items' => [], 'total_count' => 0]);
     }
-
+ 
 }

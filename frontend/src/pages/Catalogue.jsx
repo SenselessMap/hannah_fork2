@@ -13,28 +13,31 @@ const Catalogue = () => {
 const [produits, setproduits] = useState([]);
 const [pageCourante, setPageCourante] = useState(1);
 const [totalPages, setTotalPages] = useState(1);
-const [filtre, setFiltre] = useState("");
-const [ordre, setOrdre] = useState("asc");
+const [filtre, setFiltre] = useState({ identite: null, pays: null });
+const [ordre, setOrdre] = useState("");
 
 // Obtenir les infos de l'usager 
 const user = JSON.parse(localStorage.getItem("user"));
  
 const bouteillesParPage = 12;
 
+	// Quand un filtre est choisi, on met la page à 1
 	useEffect(() => {
-		getproduits(pageCourante, bouteillesParPage, filtre)
-			.then((res) => {
+		setPageCourante(1);
+	}, [filtre, ordre]);
 
-				if (filtre) {
-					setproduits(Array.isArray(res.data) ? res.data : res.data.data || []);
-					setTotalPages(1);
-				} else {
-					setproduits(res.data.data || []);
-					setTotalPages(res.data.last_page || 1);
-				}
+
+	useEffect(() => {
+		getproduits(pageCourante, bouteillesParPage, filtre, ordre)
+			.then((res) => {
+				// API retourne tjrs un objet (quand on load ou change de page) (res.data) 
+				const data = res.data;
+                
+				setproduits(data.data || []); 
+				setTotalPages(data.last_page || 1); 
 			})
 			.catch((err) => console.error("Erreur API :", err));
-	}, [pageCourante, filtre]);
+	}, [pageCourante, filtre, ordre]);
 
 
 
@@ -44,6 +47,10 @@ const bouteillesParPage = 12;
 
 	const pagePrecedente = () => {
 		if (pageCourante > 1) setPageCourante(pageCourante - 1);
+	};
+
+	const allALaPage = (page) => {
+		setPageCourante(page);
 	};
 
   return (
@@ -77,30 +84,82 @@ const bouteillesParPage = 12;
 				</div>				
 			))}			
 		</div>
-		{totalPages > 1 && (
-			<div className="div-boutons flex justify-center items-center gap-4 mb-8 mt-8">
-				<button
-					onClick={pagePrecedente}
-					disabled={pageCourante === 1}
-					className="px-4 py-2 bouton bouton-vin text-white mt-2 mb-2 rounded text-lg disabled:text:gray"
-				>
-					<span className="boutonRosee">◀</span>
-				</button>					
-				<button className="px-4 py-2 rounded bouton bouton-vin text-white">
+		{
+		totalPages > 1 && (
+			<div className="navigationCatalogue div-boutons flex justify-center items-center mb-8 mt-8">
+				
+				{/* 1. Fleche gauge pas visible à la page 1*/}
+				{pageCourante > 1 && (
+					<button
+						onClick={pagePrecedente}
+						className="px-4 py-2 bouton bouton-vin text-white rounded text-lg"
+					>
+						<span className="boutonRosee">◀</span>
+					</button>
+				)}
+
+				{/* 2. Page 1 pas visible à la page 1 ou 2 */}
+				{pageCourante !== 1 && (
+					<button
+						onClick={() => goToPage(1)}
+						className="pagesuivante"
+					>
+						1
+					</button>
+				)}
+
+				{pageCourante > 3 && (
+					<span className="text-lg">...</span>
+				)}
+
+				{pageCourante > 2 && (
+					<button
+						onClick={pagePrecedente}
+						className="pagesuivante"
+						
+					>
+						{pageCourante - 1}
+					</button>
+				)}
+
+				<span className="pagerourante">
 					{pageCourante}
-				</button>					
-				<span className=" text-lg">
-					. . . sur {totalPages}
 				</span>
-				<button
-					onClick={prochainePage}
-					disabled={pageCourante === totalPages}
-					className=" p-2 rounded bouton bouton-vin text-white text-lg mt-2 mb-2 disabled:text-gray"
-				>
-					<span className="boutonRosee text-md">▶</span>
-				</button>
-			</div>
-		)}
+				
+				{pageCourante < totalPages - 1 && (
+					<button
+						onClick={prochainePage}
+						className="pagesuivante"
+						
+					>
+						{pageCourante + 1}
+					</button>
+				)}
+
+				{pageCourante < totalPages - 2 && (
+					<span className="text-lg">...</span>
+				)}
+
+				{pageCourante !== totalPages && (
+					<button
+						onClick={() => goToPage(totalPages)}
+						className="pagesuivante"
+					>
+						{totalPages}
+					</button>
+				)}
+
+				{pageCourante < totalPages && (
+					<button
+						onClick={prochainePage}
+						className="px-4 py-2 rounded bouton bouton-vin text-white text-lg"
+					>
+						<span className="boutonRosee text-md">▶</span>
+					</button>
+				)}
+
+			</div>)
+		}
 	</div>
   );
 }

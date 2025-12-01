@@ -1,16 +1,22 @@
 import api from "./axios";
 
-export function getproduits(page, limit, filtre) {
+export function getproduits(page, limit, filtre, ordre) { 
+  const params = { page, limit, ordre , identite: filtre.identite, pays: filtre.pays }; 
+
   if (filtre?.type === "identite") {
-    return api.get(`/produits/couleur/${filtre.value}`);
+    return api.get(`/produits/couleur/${filtre.value}`, {
+      params,
+    });
   }
 
   if (filtre?.type === "pays") {
-    return api.get(`/produits/pays/${filtre.value}`);
+    return api.get(`/produits/pays/${filtre.value}`, {
+      params,
+    });
   }
 
   return api.get("/produits", {
-    params: { page, limit },
+    params,
   });
 }
 

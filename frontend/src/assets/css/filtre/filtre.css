@@ -41,18 +41,32 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
     min-width: 255px;
     margin-left: 0px;
 }
-
+/*
 .custom-select .options {
     list-style: none;
-    margin: 0; padding: 0;  
-    position: absolute;
-    top: 100%;
-    left: 0; 
-    width: 100%;
+    margin: 0; padding: 0; 
+    position: fixed;
+    top: auto;
+    left: auto;
+    width: auto;
     background-color: var(--rouge_lecture);
     border-radius: 0 0 15px 15px;
     overflow: hidden;
-    z-index: 10;
+    z-index: 1000;
+    transition: background-color 0.2s, color 0.2s;
+}*/
+
+.custom-select .options {
+    list-style: none;
+    margin: 0; padding: 0; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    width: 100%; 
+    background-color: var(--rouge_lecture);
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+    z-index: 10; 
     transition: background-color 0.2s, color 0.2s;
 }
 
@@ -73,15 +87,33 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
     border-radius: 15px 15px 0px 0px;
 }
 
+.pagesuivante, .pagerourante {
+    color: var(--rouge_lecture);
+    font-size: 1.125rem;
+    padding: 1rem;
+}
+.pagerourante {
+    text-decoration: underline;
+    font-size: 1.3rem;
+    cursor: default;
+}
+.pagesuivante:hover {
+    cursor:pointer;
+    text-decoration: underline;
+}
 
+.navigationCatalogue {
+    display: flex;
+    flex-direction: row;
+    align-items: center; justify-content: center; 
+}
 
+.filter-container {
+    max-height: 0; 
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; 
+}
 
-
-
-
-
-
-
-
-
-
+.filter-container.open {
+    max-height: 100%; 
+}
