@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:8000/api",
-  // baseURL: "https://e2495553.webdevmaisonneuve.ca/api",
+  //baseURL: "https://e1640340.webdevmaisonneuve.ca",
   headers: { "X-Requested-With": "XMLHttpRequest" },
   withCredentials: true, // très important !
 });
