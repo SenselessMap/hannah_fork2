@@ -21,10 +21,11 @@ function App() {
       <main className="pb-24">   {/* important pour ne pas cacher le contenu */}
         <Routes>
           <Route path="/inscription" element={<Inscription />} />
-        <Route path="/connexion" element={<Auth />} />
-        <Route path="/compte" element={<CompteUsager />} />
-        <Route path="/" element={<Catalogue />} />         
+          <Route path="/connexion" element={<Auth />} />
+          <Route path="/compte" element={<CompteUsager />} />
+          <Route path="/" element={<Catalogue />} />         
 
+<<<<<<< Updated upstream
         <Route path="/produit/:id" element={<FicheProduit />} />      
         <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />
         <Route path="/cellier/creer" element={<CreerCellier />} />
@@ -36,6 +37,14 @@ function App() {
         </Routes>
       
        
+=======
+          <Route path="/produit/:id" element={<FicheProduit />} />      
+          <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />
+          <Route path="/cellier/creer" element={<CreerCellier />} />
+          <Route path="/produit/:id" element={<FicheProduit />} />
+          <Route path="/celliers" element={<CellierUtilisateur />} />
+        </Routes>       
+>>>>>>> Stashed changes
       </main>
      <Footer />
       <MenuMobile />   {/* ajout Menu application mobile */}

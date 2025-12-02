@@ -9,7 +9,7 @@ export default function BoutonDeconnexion(){
 
     const deconnexion = async() => {
         try {
-            const response = await api.post("http://localhost:8000/api/deconnexion",
+            const response = await api.post("/deconnexion",
                 {},
                 { headers: { Authorization: `Bearer ${token}`}}
             );

@@ -16,8 +16,10 @@ const [filtre, setFiltre] = useState({ identite: null, pays: null });
 const [ordre, setOrdre] = useState("");
 
 // Obtenir les infos de l'usager 
-const user = JSON.parse(localStorage.getItem("user"));
- 
+const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+
+console.log(localStorage.getItem("user"));
+
 const bouteillesParPage = 12;
 
 	// Quand un filtre est choisi, on met la page à 1
@@ -54,17 +56,16 @@ const bouteillesParPage = 12;
 
   return (
 
-	  <div className="contenu">        
-		<p className="flex justify-end mb-15 text-sm">{user ? `Bienvenue  ${user.name} !` : ""}</p>
-
+	  <div className="contenu"> 
+		<p className="flex justify-end mb-15 text-sm">{user && user.name ? `Bienvenue ${user.name} !` : ""}</p>
 		<h1 className="mt-10 mb-6 text-4xl text-bold text-center">Catalogue</h1>
-	    <Filtre filtre={filtre} setFiltre={setFiltre} ordre={ordre} setOrdre={setOrdre} setproduits={setproduits}/>
-		
+	    <Filtre filtre={filtre} setFiltre={setFiltre} ordre={ordre} setOrdre={setOrdre} setproduits={setproduits}/>		
 		<div className="grilleBouteille">
 			{Array.isArray(produits) && produits.map((p) => (
 				
 				<div className="carteBouteille" key={p.id}>
-					<img className="imageBouteille" src={p.image} alt="Nom de l'image {p.name} "/>
+					<img className="imageBouteille" src={p.image || 'https://cdn.pixabay.com/photo/2012/04/13/11/49/wine-32052_1280.png'}
+  alt={p.name ? `Nom du vin ${p.name}` : 'Nom du vin non disponible'}/>
 					<div className="carteContenu">
 					<h3 className="font-bold">{p.name} {p.millesime_produit}</h3>
 					<p>{p.identite_produit} - {p.pays_origine}</p>
