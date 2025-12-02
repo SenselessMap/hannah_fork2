@@ -16,7 +16,7 @@ import api from "../api/axios"; // ton axios configuré avec baseURL, withCreden
 
     // Récupérer le produit
     useEffect(() => {
-        api.get(`http://localhost:8000/api/produits/${id}`)
+        api.get(`/produits/${id}`)
             .then(res => setProduit(res.data))
             .catch(err => console.error(err));
     }, [id]);
@@ -44,7 +44,7 @@ import api from "../api/axios"; // ton axios configuré avec baseURL, withCreden
     const ajouterProduit = () => {
         if (!produit || !cellierSelectionne) return;
 
-        api.post(`http://localhost:8000/api/celliers/${cellierSelectionne}/produits`, {
+        api.post(`/celliers/${cellierSelectionne}/produits`, {
             produit_id: produit.id,
             quantite: quantite
         })
