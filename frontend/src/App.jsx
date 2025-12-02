@@ -25,26 +25,12 @@ function App() {
           <Route path="/compte" element={<CompteUsager />} />
           <Route path="/" element={<Catalogue />} />         
 
-<<<<<<< Updated upstream
-        <Route path="/produit/:id" element={<FicheProduit />} />      
-        <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />
-        <Route path="/cellier/creer" element={<CreerCellier />} />
-        
-
-
-        <Route path="/produit/:id" element={<FicheProduit />} />
-        <Route path="/celliers" element={<CellierUtilisateur />} />
-        </Routes>
-      
-       
-=======
           <Route path="/produit/:id" element={<FicheProduit />} />      
           <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />
           <Route path="/cellier/creer" element={<CreerCellier />} />
           <Route path="/produit/:id" element={<FicheProduit />} />
           <Route path="/celliers" element={<CellierUtilisateur />} />
         </Routes>       
->>>>>>> Stashed changes
       </main>
      <Footer />
       <MenuMobile />   {/* ajout Menu application mobile */}
