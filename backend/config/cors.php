@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['*'], // Frontend Vite
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 

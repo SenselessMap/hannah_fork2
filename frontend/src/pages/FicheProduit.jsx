@@ -92,9 +92,13 @@ import api from "../api/axios";
                     value={cellierSelectionne || ''}
                     onChange={e => setCellierSelectionne(e.target.value)}
                 >
-                    {celliers.map(c => (
-                    <option key={c.id} value={c.id}>{c.nom}</option>
-                    ))}
+                    {Array.isArray(celliers) && celliers.length > 0 ? (
+                    celliers.map(c => (
+                        <option key={c.id} value={c.id}>{c.nom}</option>
+                    ))
+                    ) : (
+                    <option disabled>Aucun cellier</option>
+                    )}
                 </select>
                 <div className="gap-sm w-full flex justify-center gap-[2px] mb-4">
                     <button

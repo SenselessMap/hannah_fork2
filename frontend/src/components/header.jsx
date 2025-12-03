@@ -13,8 +13,38 @@ export default function Header({deconnexion}) {
   const [menuOuvert, setMenuOuvert] = useState(false);
   const [compteOuvert, setCompteOuvert] = useState(false);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const token = localStorage.getItem("token");
+  //const user = JSON.parse(localStorage.getItem("user") || "{}" || );
+  //const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+
+const user = JSON.parse(localStorage.getItem("user") || "{}"); // avec fallback vide "{}"
+if (!user || Object.keys(user).length === 0) {
+  console.warn("Aucun utilisateur trouvé dans localStorage.");
+}
+const token = localStorage.getItem("token") || "{}"; // avec fallback vide "{}"
+
+if (!token || Object.keys(token).length === 0) {
+  console.warn("Aucun token trouvé dans localStorage.");
+}
+
+  /*let user = null;
+
+  const user = JSON.parse(localStorage.getItem("user") || "{}"); // avec fallback vide "{}"
+if (!user || Object.keys(user).length === 0) {
+  console.warn("Aucun utilisateur trouvé dans localStorage.");
+}
+
+  try {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+      user = JSON.parse(storedUser);
+    }
+  } catch (e) {
+    console.error("Erreur parsing user depuis localStorage:", e);
+    user = null;
+    localStorage.removeItem("user");
+  }
+  let token = localStorage.getItem("token");
+  if (token === "undefined" || token === "null") token = null;*/
 
   return (
     <>

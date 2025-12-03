@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Jobs\ScrapeJob;
 
-class ScrapeSaqCommand extends Command
+class ScrapeSaq extends Command
 {
     protected $signature = 'scrape:saq';
     protected $description = 'Lance le scraping SAQ en Job';

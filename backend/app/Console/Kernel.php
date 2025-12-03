@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     }
 
     protected $commands = [
-        \App\Console\Commands\ScrapeSaqCommand::class,
+        \App\Console\Commands\ScrapeSaq::class,
     ];
 
     /**

@@ -16,7 +16,7 @@ use App\Http\Controllers\WineController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
 Route::get('/scrape-all', [ScraperController::class, 'scrapeAll']);
@@ -25,5 +25,5 @@ Route::get('/scrape-test', [ScraperController::class, 'scrapeTest']);
 
 // Toutes les routes qui ne sont pas /api/... redirigent vers React, toujours mettre à la fin
 Route::get('/{any}', function () {
-    return view('app'); 
+    return file_get_contents(public_path('index.html')); // Le fichier index.html généré par React 
 })->where('any', '.*');

@@ -45,7 +45,6 @@ const bouteillesParPage = 12;
 	const prochainePage = () => {
 		if (pageCourante < totalPages) setPageCourante(pageCourante + 1);
 	};
-
 	const pagePrecedente = () => {
 		if (pageCourante > 1) setPageCourante(pageCourante - 1);
 	};

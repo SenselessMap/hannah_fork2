@@ -2,8 +2,20 @@ import { Github } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const token = localStorage.getItem("token");
+  let user = null;
+
+  try {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+      user = JSON.parse(storedUser);
+    }
+  } catch (e) {
+    console.error("Erreur parsing user depuis localStorage:", e);
+    user = null;
+    localStorage.removeItem("user");
+  }
+  let token = localStorage.getItem("token");
+  if (token === "undefined" || token === "null") token = null;
 
   return (
     <footer className="mt-20 bg-stone-200 text-red-950">
