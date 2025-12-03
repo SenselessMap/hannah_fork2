@@ -22,7 +22,6 @@ import api from "../api/axios";
     }, [id]);
 
     // Récupérer les celliers de l'utilisateur connecté avec Sanctum
-
     useEffect(() => {
         api.get("/celliers")
             .then(res => {

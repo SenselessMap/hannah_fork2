@@ -1,10 +1,9 @@
-// Importation des bibliothèques
 import { useState } from "react";
-//import axios from "axios";
 import api from "../api/axios";
 import { Link } from "react-router-dom";
 
 export default function CreerCellier() {
+  
   const [nomCellier, setNomCellier] = useState("");
   const [erreurs, setErreurs] = useState({});
   const [message, setMessage] = useState("");
