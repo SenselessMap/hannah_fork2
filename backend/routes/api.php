@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\produitController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -32,8 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/inscription', [UserController::class, 'store']);
 
 // Routes des produits (vins)
-Route::get('/produits', [produitController::class, 'index']);
-Route::get('/produits/{id}', [produitController::class, 'show']);
+Route::get('/produits', [ProduitController::class, 'index']);
+Route::get('/produits/{id}', [ProduitController::class, 'show']);
 
 // Routes d'authentification
 Route::post('/connexion', [AuthController::class, 'store']);
