@@ -32,7 +32,6 @@ export default function Incription() {
       setMotDePasse('')
       setConfirmationMdp('')
       setErreurs({})
-
       // Redirige vers la page login avec message de succès
       route('/connexion', {
         state:{message: response.data.message }

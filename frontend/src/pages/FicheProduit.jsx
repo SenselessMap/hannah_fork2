@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../api/axios"; // ton axios configuré avec baseURL, withCredentials et CSRF
+import api from "../api/axios";
 
 /**
  * Fonction fléchée qui affiche les détails d'un vin et qui affiche le formulaire d'ajout du vin sélectionné et qui permet d'ajouter le vin dans le cellier de l'utilisateur connecté. La quantité ajoutée est enregistrée dans la table pivot cellier_produit dans la colonne "quantite"
@@ -22,7 +22,6 @@ import api from "../api/axios"; // ton axios configuré avec baseURL, withCreden
     }, [id]);
 
     // Récupérer les celliers de l'utilisateur connecté avec Sanctum
-
     useEffect(() => {
         api.get("/celliers")
             .then(res => {

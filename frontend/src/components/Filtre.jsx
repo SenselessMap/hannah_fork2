@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import axiosClient from "../api/axios";
+import api from "../api/axios";
 
 export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
 	const [identites, setIdentites] = useState([]);
@@ -19,12 +19,12 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
 	];
 
 	useEffect(() => {
-		axiosClient.get("/identite_produit") 
+		api.get("/identite_produit") 
 			.then(res => setIdentites(res.data))
 			.catch(err => console.error(err));
 	}, []);
 	useEffect(() => {
-		axiosClient.get("/pays").then(res => setPays(res.data));
+		api.get("/pays").then(res => setPays(res.data));
 	}, []);
 
 	return (
