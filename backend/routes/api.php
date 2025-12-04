@@ -50,9 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 /* À Hannah */
 Route::get('/identite_produit', [ProduitController::class, 'getCouleurs']);
-// Route::get('/produits/couleur/{identite_produit}', [ProduitController::class, 'getProduitsParCouleur']); 
 Route::get('/pays_origine', [ProduitController::class, 'getPays']);
-// Route::get('/produits/pays/{pays}', [ProduitController::class, 'getProduitsParPays']); 
 /* Plus à Hannah */
 
 
