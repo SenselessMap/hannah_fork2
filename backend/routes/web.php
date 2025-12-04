@@ -24,6 +24,6 @@ Route::get('/scrape-all', [ScraperController::class, 'scrapeAll']);
 Route::get('/scrape-test', [ScraperController::class, 'scrapeTest']);
 
 // Toutes les routes qui ne sont pas /api/... redirigent vers React, toujours mettre à la fin
-Route::get('/{any}', function () {
+/*Route::get('/{any}', function () {
     return file_get_contents(public_path('index.html')); // Le fichier index.html généré par React 
-})->where('any', '.*');
+})->where('any', '.*');*/

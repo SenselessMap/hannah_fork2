@@ -51,14 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
 /* À Hannah */
 Route::get('/identite_produit', [ProduitController::class, 'getCouleurs']);
 // Route::get('/produits/couleur/{identite_produit}', [ProduitController::class, 'getProduitsParCouleur']); 
-Route::get('/pays', [ProduitController::class, 'getPays']);
+Route::get('/pays_origine', [ProduitController::class, 'getPays']);
 // Route::get('/produits/pays/{pays}', [ProduitController::class, 'getProduitsParPays']); 
 /* Plus à Hannah */
 
-// routes/web.php, toujours mettre à la fin pour empêcher de rediriger vers React
-Route::get('/{any}', function () {
-    return view('app');
-})->where('any', '.*');
 
 Route::get('/test', function() {
     return response()->json(['message' => 'Backend fonctionne !']);

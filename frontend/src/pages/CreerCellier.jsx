@@ -36,7 +36,9 @@ export default function CreerCellier() {
       }
     }
   };
-  
+  if (!nomCellier) return <div className="points">
+        <span></span><span></span><span></span>
+    </div>;
   return (
     <section className="mt-20">
       <form

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Catalogue from "./pages/Catalogue";
 import FicheProduit from "./pages/FicheProduit";
-import CellierUtilisateur from "./components/cellierUtilisateur";
+import CellierUtilisateur from "./components/CellierUtilisateur";
 import Layout from "./components/Layout";
 import Auth from "./pages/Auth";
 import Inscription from "./pages/Inscription";
@@ -10,6 +10,7 @@ import MenuMobile from "./components/MenuMobile";
 import CompteUsager from "./components/CompteUsager";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AjouterProduitCellier from './pages/AjouterProduitCellier'; 
 import "./App.css";
 
 function App() {
@@ -23,13 +24,14 @@ function App() {
           <Route path="/inscription" element={<Inscription />} />
           <Route path="/connexion" element={<Auth />} />
           <Route path="/compte" element={<CompteUsager />} />
-          <Route path="/" element={<Catalogue />} />         
+          <Route path="/" element={<Auth />} />         
 
-          <Route path="/produit/:id" element={<FicheProduit />} />      
+          <Route path="/produits" element={<Catalogue />} />      
+          <Route path="/produits/:id" element={<FicheProduit />} />
+
           <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />
-          <Route path="/cellier/creer" element={<CreerCellier />} />
-        
-          <Route path="/produit/:id" element={<FicheProduit />} />
+          <Route path="/cellier/creer" element={<CreerCellier />} />          
+          <Route path="/user/:id/celliers/produits/:productId" element={<AjouterProduitCellier />} />
           <Route path="/celliers" element={<CellierUtilisateur />} />
         </Routes>       
       </main>

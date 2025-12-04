@@ -58,7 +58,7 @@ export default function Footer() {
           {/* === Connecté === */}
           {token && user && (
             <>
-            <Link to="/" className="hover:text-red-700">Catalogue</Link>
+            <Link to="/produits" className="hover:text-red-700">Catalogue</Link>
               <Link to="/celliers" className="hover:text-red-800">Mes celliers</Link>
               <Link to="/compte" className="hover:text-red-800">Mon compte</Link>
 

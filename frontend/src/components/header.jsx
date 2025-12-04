@@ -26,26 +26,6 @@ if (!token || Object.keys(token).length === 0) {
   console.warn("Aucun token trouvé dans localStorage.");
 }
 
-  /*let user = null;
-
-  const user = JSON.parse(localStorage.getItem("user") || "{}"); // avec fallback vide "{}"
-if (!user || Object.keys(user).length === 0) {
-  console.warn("Aucun utilisateur trouvé dans localStorage.");
-}
-
-  try {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
-      user = JSON.parse(storedUser);
-    }
-  } catch (e) {
-    console.error("Erreur parsing user depuis localStorage:", e);
-    user = null;
-    localStorage.removeItem("user");
-  }
-  let token = localStorage.getItem("token");
-  if (token === "undefined" || token === "null") token = null;*/
-
   return (
     <>
       {/* ===== HEADER DESKTOP ===== */}
@@ -70,7 +50,7 @@ if (!user || Object.keys(user).length === 0) {
         <nav className="hidden md:flex items-center gap-8 text-lg font-medium">
 
          {token && (
-  <Link to="/" className="hover:text-red-950 transition">
+  <Link to="/produits" className="hover:text-red-950 transition">
     Catalogue
   </Link>
 )}

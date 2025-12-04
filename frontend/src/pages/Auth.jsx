@@ -54,7 +54,7 @@ export default function Auth() {
       setErreurs({})
       
       // Redirige vers la page catalogue avec message de succès
-      route('/', {
+      route('/produits', {
         state:{message: response.data.message }
       });
       
@@ -67,8 +67,7 @@ export default function Auth() {
         setErreurs({general: error.response.data.message});
       }
     }
-  };
-  
+  };  
   return (
     <section className="mt-30">
     {msgSucces &&(

@@ -51,7 +51,9 @@ export default function AfficheCellier() {
       alert("Erreur lors de la mise à jour du vin !");
     }
   };
-  
+  if (!celliers) return <div className="points">
+        <span></span><span></span><span></span>
+    </div>;
   return (
     <div className="flex justify-center px-3 py-4">
       <div className="w-full lg:w-1/2">
@@ -114,7 +116,7 @@ export default function AfficheCellier() {
           ) : (
             <p>Aucun cellier trouvé.</p>
           )}
-          <hr className="border border-[1px] border-dotted bouton-vin-rosee mt-10" />
+          <hr className="border border-[1px] border-dotted bouton-vin mb-10" />
           <div>
             <h1 className="text-2xl font-bold mt-8 mb-8">Nouveau cellier 🍇</h1>
             <Link

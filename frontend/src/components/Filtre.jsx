@@ -24,9 +24,11 @@ export default function Filtre({ filtre, setFiltre, ordre, setOrdre }) {
 			.catch(err => console.error(err));
 	}, []);
 	useEffect(() => {
-		api.get("/pays").then(res => setPays(res.data));
+		api.get("/pays_origine").then(res => setPays(res.data));
 	}, []);
-
+    if (!lesFiltresOrdre) return <div className="points">
+        <span></span><span></span><span></span>
+    </div>;
 	return (
         <form className="formulaire_de_filtre" style={{ marginBottom: "1rem" }}>
             
