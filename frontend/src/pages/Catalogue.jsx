@@ -107,7 +107,7 @@ const bouteillesParPage = 12;
 				{/* 2. Page 1 pas visible à la page 1 ou 2 */}
 				{pageCourante !== 1 && (
 					<button
-						onClick={() => goToPage(1)}
+						onClick={() => allALaPage(1)}
 						className="allALaPage"
 					>
 						1
@@ -148,7 +148,7 @@ const bouteillesParPage = 12;
 
 				{pageCourante !== totalPages && (
 					<button
-						onClick={() => goToPage(totalPages)}
+						onClick={() => allALaPage(totalPages)}
 						className="allALaPage"
 					>
 						{totalPages}
