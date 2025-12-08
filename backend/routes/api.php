@@ -6,6 +6,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListeAchatController;
 
 
 /*
@@ -46,6 +47,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/celliers/{cellierId}/produits/{produitId}', [CellierController::class, 'modifierQuantite']);
     Route::delete('/celliers/{cellierId}/produits/{produitId}', [CellierController::class, 'supprimerProduit']);
     Route::post('/celliers', [CellierController::class, 'creerCellier']);
+
+    // Routes pour la liste d'achat
+
+    Route::get('/liste-achats', [ListeAchatController::class, 'index']);
+    Route::post('/liste-achats/{produit}', [ListeAchatController::class, 'store']);
+    Route::put('/liste-achats/{id}', [ListeAchatController::class, 'update']);
+    Route::delete('/liste-achats/{id}', [ListeAchatController::class, 'destroy']);
 });
 
 /* À Hannah */
