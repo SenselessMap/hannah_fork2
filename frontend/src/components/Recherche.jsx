@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const API_BASE_URL = "http://localhost:8000/api"; 
 const getHeaders = (customHeaders = {}) => {

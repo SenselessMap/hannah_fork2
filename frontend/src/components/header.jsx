@@ -4,12 +4,13 @@ import { Search, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import BoutonDeconnexion from "./BoutonDeconnexion";
 import GetUsager from "./GetUsager";
 import GetToken from "./GetToken";
+import Recherche from "./Recherche";
 
-
-export default function Header({ deconnexion, recherche, setRecherche }) {
+export default function Header({ deconnexion }) {
 
   const [menuOuvert, setMenuOuvert] = useState(false);
   const [compteOuvert, setCompteOuvert] = useState(false);
+  const [recherche, setRecherche] = useState("")
 
   // Récupérer token et user depuis localStorage ou sessionStorage
   const token = GetToken();
