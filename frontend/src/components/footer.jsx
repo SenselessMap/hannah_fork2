@@ -2,6 +2,7 @@ import { Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import GetUsager from "./GetUsager";
 import GetToken from "./GetToken";
+import BoutonDeconnexion from "./BoutonDeconnexion";
 
 export default function Footer() {
   
@@ -45,15 +46,10 @@ export default function Footer() {
   
         <nav className="flex flex-wrap justify-center gap-6 text-sm font-medium">
 
-          
-
           {/* === Connecté === */}
           {token && user && (
             <>
-            <Link to="/produits" className="hover:text-red-700">Catalogue</Link>
-              <Link to="/celliers" className="hover:text-red-800">Mes celliers</Link>
-              <Link to="/compte" className="hover:text-red-800">Mon compte</Link>
-
+           <BoutonDeconnexion/>
         
             </>
           )}

@@ -37,7 +37,6 @@ const ListeAchats = () => {
       );
     } catch (error) {
       console.error(error);
-      alert("Erreur lors de la mise à jour de la quantité.");
     }
   };
 
@@ -49,7 +48,6 @@ const ListeAchats = () => {
       setItems((prev) => prev.filter((it) => it.id !== itemId));
     } catch (error) {
       console.error(error);
-      alert("Erreur lors de la suppression.");
     }
   };
 

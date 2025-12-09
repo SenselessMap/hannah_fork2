@@ -3,6 +3,8 @@ import api from "../api/axios";
 import FicheProduitCellier from "./FicheProduitCellier";
 import ModalAjouter from "../components/ModalAjouter";
 import ModalErreur from "../components/ModalErreur";
+import ModalSupprimer from "../components/ModalSupprimer";
+
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { GiGrapes } from "react-icons/gi";
@@ -28,6 +30,7 @@ const AfficheCellier = () => {
     const [modalAjouterVisible, setModalAjouterVisible] = useState(false); // affiche la boite modale d'ajout et quantité
     const [modalErreurVisible, setModalErreurVisible] = useState(false);
     const [modalSupprimerVisible, setModalSupprimerVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         api.get("/celliers")
@@ -187,9 +190,9 @@ const AfficheCellier = () => {
     };
 
     {/* Animations 3 points pour le chargement de la page */}
-	if (!celliers) return <div className="points"> 
-		<span></span><span></span><span></span>
-	</div>;
+	//if (!celliers) return <div className="points"> 
+		//<span></span><span></span><span></span>
+	//</div>;
 
     return (
         <div className="flex justify-center align-col px-3 py-4">                        

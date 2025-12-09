@@ -37,9 +37,9 @@ import { Link } from "react-router-dom";
     }
   };
 
-  if (!nomCellier) return <div className="points">
+  //if (!nomCellier) return <div className="points">
         //<span></span><span></span><span></span>
-    </div>;
+    //</div>;
 
 
   return (
