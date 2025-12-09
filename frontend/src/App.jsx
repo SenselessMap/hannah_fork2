@@ -20,15 +20,6 @@ import "./App.css";
 
 function App() {
 
-  useEffect(() => {
-    // Configurer le header au démarrage si token existe
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (token) {
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-  }, []);
-  
   const [recherche, setRecherche] = useState(""); 
 
   return (

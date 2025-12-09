@@ -37,11 +37,10 @@ import api from "../api/axios";
 
      // Redirection automatique vers la liste d’achats
     navigate("/liste-achats");
-
-    alert("Produit ajouté à votre liste d'achat !");
+    
   } catch (err) {
     console.error("Erreur ajout liste d'achat :", err);
-    alert("Impossible d'ajouter ce produit à votre liste.");
+
   }
 };
 
