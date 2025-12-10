@@ -4,7 +4,7 @@ import GetUsager from "./GetUsager";
 import GetToken from "./GetToken";
 import BoutonDeconnexion from "./BoutonDeconnexion";
 
-export default function Footer() {
+export default function Footer({ deconnexion }) {
   
   // Récupérer token et user depuis localStorage ou sessionStorage
   const token = GetToken
@@ -48,11 +48,11 @@ export default function Footer() {
 
           {/* === Connecté === */}
           {token && user && (
-            <>
-           <BoutonDeconnexion/>
-        
-            </>
-          )}
+  <>
+    {/* Déconnexion desktop */}
+    <BoutonDeconnexion deconnexion={deconnexion} />
+  </>
+)}
 
           {/* === Non connecté === */}
           {(!token || !user) && (

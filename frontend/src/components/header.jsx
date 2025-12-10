@@ -6,7 +6,8 @@ import GetUsager from "./GetUsager";
 import GetToken from "./GetToken";
 import Recherche from "./Recherche";
 
-export default function Header({ deconnexion, recherche, setRecherche }) {
+export default function Header({deconnexion, recherche, setRecherche }) {
+
   const [menuOuvert, setMenuOuvert] = useState(false);
   const [compteOuvert, setCompteOuvert] = useState(false);
 
@@ -37,7 +38,7 @@ export default function Header({ deconnexion, recherche, setRecherche }) {
 
           {token && (
             <Link to="/liste-achats" className="hover:text-red-950 transition">
-             Liste d’Achats
+                Mes Achats
             </Link>
           )}
 
@@ -60,6 +61,7 @@ export default function Header({ deconnexion, recherche, setRecherche }) {
                 )}
               </div>
 
+              {/* Déconnexion desktop */}
               <BoutonDeconnexion deconnexion={deconnexion} />
             </>
           )}
@@ -115,8 +117,8 @@ export default function Header({ deconnexion, recherche, setRecherche }) {
         {/* NAV mobile */}
         <nav className="flex flex-col gap-4 text-lg font-medium">
           {token && <Link to="/produits">Catalogue</Link>}
-          {token && <Link to="/liste-achats">Liste d’Achats</Link>}
-
+          {token && <Link to="/liste-achats">Achats</Link>}
+          
           {token && user && (
             <>
               <button

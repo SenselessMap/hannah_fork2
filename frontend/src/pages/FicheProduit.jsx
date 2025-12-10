@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import api from "../api/axios";
 
@@ -12,6 +12,7 @@ import api from "../api/axios";
     const { id } = useParams();
     const [produit, setProduit] = useState(null);  
     const [user, setUser] = useState(null);
+    const navigate = useNavigate();
 
     // Récupérer l'utilisateur'
     useEffect(() => {
@@ -33,6 +34,10 @@ import api from "../api/axios";
     const response = await api.post(`/liste-achats/${produitId}`);
 
     console.log("Ajout réussi :", response.data);
+
+     // Redirection automatique vers la liste d’achats
+    navigate("/liste-achats");
+
     alert("Produit ajouté à votre liste d'achat !");
   } catch (err) {
     console.error("Erreur ajout liste d'achat :", err);

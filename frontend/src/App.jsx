@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "./api/axios";
 import Catalogue from "./pages/Catalogue";
 import FicheProduit from "./pages/FicheProduit";
