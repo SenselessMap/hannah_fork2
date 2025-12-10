@@ -47,10 +47,12 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast.
-     *
+     *Convertir les chaines de caractères en objets carbon
      * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'temp_password_created_at' => 'datetime',
     ];
+
 }
