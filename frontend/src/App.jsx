@@ -10,10 +10,12 @@ import MenuMobile from "./components/MenuMobile";
 import CompteUsager from "./components/CompteUsager";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AjouterProduitCellier from './pages/AjouterProduitCellier'; 
+import AjouterProduitCellier from './pages/AjouterProduitCellier';
+import MotDePasseOublie from "./pages/MotDePasseOublie";
+import ReinitialiserMotDePasse from "./pages/ReinitialiserMotDePasse";
 import "./App.css";
-import { useEffect, useState } from "react";
-import api from "./api/axios"
+import { useState } from "react";
+
 
 // Faire afficher les vues de react
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Routes>
           <Route path="/inscription" element={<Inscription />} />
           <Route path="/" element={<Auth />} />
+          <Route path="/mdp-oublie" element={<MotDePasseOublie />} />
+          <Route path="/mdp-reinitialise" element={<ReinitialiserMotDePasse />} />
           <Route path="/compte" element={<CompteUsager />} />
                  
           <Route path="/produits" element={<Catalogue />} />      
