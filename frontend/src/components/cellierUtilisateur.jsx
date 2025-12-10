@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import FicheProduitCellier from "./FicheProduitCellier";
-import ModalAjouter from "../components/ModalAjouter";
-import ModalErreur from "../components/ModalErreur";
+import ModalAjouter from "./ModalAjouter";
+import ModalErreur from "./ModalErreur";
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { GiGrapes } from "react-icons/gi";
