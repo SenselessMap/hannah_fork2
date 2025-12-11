@@ -83,18 +83,6 @@ export default function MenuMobile() {
           </>
         )}
 
-        {/* ===== Si NON connecté → montrer seulement “Compte” ===== */}
-        {!token && !user && (
-          <li className="flex-1 text-center">
-            <Link
-              to="/connexion"
-              className="flex flex-col items-center text-red-900 opacity-80"
-            >
-              <User className="w-7 h-7" />
-              <span className="text-xs mt-1">Connexion</span>
-            </Link>
-          </li>
-        )}
       </ul>
     </nav>
   );

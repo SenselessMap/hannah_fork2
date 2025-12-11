@@ -7,7 +7,7 @@ import GetUsager from "../components/GetUsager";
 /**
  * Fonction qui liste le catalogue de bouteilles
  */
-const Catalogue = () => {
+const Catalogue = ({deconnexion}) => {
 	const [produits, setproduits] = useState([]);
 	const [pageCourante, setPageCourante] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);

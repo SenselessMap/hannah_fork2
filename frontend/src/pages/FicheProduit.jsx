@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState} from "react";
+import { Link, useParams,useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import GetUsager from "../components/GetUsager"
 
@@ -13,6 +13,7 @@ import GetUsager from "../components/GetUsager"
     const [produit, setProduit] = useState(null); 
 
     const user = GetUsager();
+    const navigate = useNavigate();
 
        // Récupérer le produit
     useEffect(() => {
