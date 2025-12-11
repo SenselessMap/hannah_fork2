@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import api from "../api/axios";
+import GetUsager from "../components/GetUsager"
 
 /**
  * Fonction fléchée qui affiche les détails d'un vin et qui affiche le formulaire d'ajout du vin sélectionné et qui permet d'ajouter le vin dans le cellier de l'utilisateur connecté. La quantité ajoutée est enregistrée dans la table pivot cellier_produit dans la colonne "quantite"
@@ -10,19 +11,11 @@ import api from "../api/axios";
  */
  const FicheProduit = () => {
     const { id } = useParams();
-    const [produit, setProduit] = useState(null);  
-    const [user, setUser] = useState(null);
-    const navigate = useNavigate();
+    const [produit, setProduit] = useState(null); 
 
-    // Récupérer l'utilisateur'
-    useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-        setUser(JSON.parse(storedUser));
-        }
-    }, []);
+    const user = GetUsager();
 
-    // Récupérer le produit
+       // Récupérer le produit
     useEffect(() => {
         api.get(`/produits/${id}`)
             .then(res => setProduit(res.data))
@@ -33,11 +26,12 @@ import api from "../api/axios";
         try {
             const response = await api.post(`/liste-achats/${produitId}`);
 
-            console.log("Ajout réussi :", response.data);
-            alert("Produit ajouté à votre liste d'achat !");
-        } catch (err) {
-            console.error("Erreur ajout liste d'achat :", err);
-            alert("Impossible d'ajouter ce produit à votre liste.");
+               // Redirection automatique
+                navigate("/liste-achats");
+            
+        } catch (error) {
+            console.error(error);
+            
         }
     };
 
@@ -66,7 +60,7 @@ import api from "../api/axios";
                     </ul>
 
                     <div className="flex gap-5 justify-left items-center ">
-                        <Link className="block w-full" to={user ? `/user/${user.id}/celliers/produits/${produit.id}` : ""}>
+                        <Link className="block w-full" to={user ? `/user/${user.id}/celliers/produits/${produit.id}` : "#"}>
                             <button className="mt-6 px-6 py-3 border-2 hover:border-[var(--couleur-text)] hover:text-[var(--couleur-text)] hover:bg-white rounded-lg bg-[var(--couleur-text)] text-white transition duration-300 cursor-pointer text-sm md:text-md lg:text-lg">Ajouter au cellier</button>
                         </Link>
                         <Link className="block w-full" to={user ? `/user/${user.id}/liste/produits/${produit.id}` : ""}>
