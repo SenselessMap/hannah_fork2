@@ -1,24 +1,5 @@
 import { useEffect, useState } from "react";
-
-const API_BASE_URL = "http://localhost:8000/api"; 
-const getHeaders = (customHeaders = {}) => {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-    const headers = { "X-Requested-With": "XMLHttpRequest", 'Content-Type': 'application/json', ...customHeaders };
-    if (token) { headers.Authorization = `Bearer ${token}`; }
-    return headers;
-};
-const api = {
-    get: async (endpoint) => {
-        const url = `${API_BASE_URL}${endpoint}`;
-        const response = await fetch(url, { method: 'GET', headers: getHeaders(), credentials: 'include' });
-        if (!response.ok) { 
-            const errorBody = await response.text();
-            console.error(`Erreur API: ${response.status}`, errorBody);
-            throw new Error(`Échec de la recherche: ${response.status}`);
-        }
-        return { data: await response.json() };
-    },
-};
+import api from "../api/axios";
 
 export default function Recherche({ recherche, setRecherche }) {
     const [inputValue, setInputValue] = useState(recherche);
@@ -77,8 +58,8 @@ export default function Recherche({ recherche, setRecherche }) {
                     type="search"
                     value={inputValue}
                     onChange={handleInputChange}
-                    placeholder="Rechercher par nom ou millésime"
-                    className="w-full p-2 pl-10 border border-gray-300 rounded-lg focus:ring-red-950 focus:border-red-950 text-gray-900"
+                    placeholder="Rechercher par nom"
+                    className="bareDeRecherche w-full p-2 pl-10 border border-gray-300 rounded-lg focus:ring-red-950 focus:border-red-950 text-gray-900"
                 />
                 <svg
                     className="w-5 h-5 absolute left-3 text-gray-500"

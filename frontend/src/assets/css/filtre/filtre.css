@@ -23,6 +23,18 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
 
 /* mon CSS */
 
+.bouton-filtre {
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+
+
 .formulaire_de_filtre {
     display:flex;
     flex-direction: column;
@@ -49,11 +61,11 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
 .custom-select .options {
     border-top: 2px solid var(--rouge_lecture);
     list-style: none;
-    margin: 2px 0 0 0; padding: 0; 
+    margin: 0; padding: 0; 
     position: absolute; 
     top: 100%; 
-    left: 0; 
-    width: 100%; 
+    left: -2px; 
+    width: calc(100% + 4px);
     overflow: hidden;
     z-index: 10; 
     transition: background-color 0.2s, color 0.2s;
@@ -71,7 +83,7 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
 
 .custom-select .option:hover {
     background-color: var(--rose_vino);
-    color: var(--rouge_lecture);
+    color: white;
 }
 
 .custom-select.open {
@@ -106,7 +118,8 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
 }
 
 .filter-container.open {
-    max-height: 100%; 
+    max-height: 800px;
+    overflow: visible; 
 }
 
 .contenuPreview {
@@ -144,4 +157,20 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
     position: absolute;
     top: 8px;
     left: 4px;
+}
+
+.recherche_catalogue {
+    background-color: white;
+}
+
+.bareDeRecherche {
+    border: 2px solid grey;
+}
+
+.dropdownDeDropdown {
+    margin-bottom: 12px;
+}
+
+.boutonDropdown {
+    margin-top: 10px;
 }

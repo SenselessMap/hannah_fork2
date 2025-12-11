@@ -48,11 +48,11 @@ export default function Footer({ deconnexion }) {
 
           {/* === Connecté === */}
           {token && user && (
-  <>
-    {/* Déconnexion desktop */}
-    <BoutonDeconnexion deconnexion={deconnexion} />
-  </>
-)}
+          <>
+            {/* Déconnexion desktop */}
+            <BoutonDeconnexion deconnexion={deconnexion} />
+          </>
+        )}
 
           {/* === Non connecté === */}
           {(!token || !user) && (

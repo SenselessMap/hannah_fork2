@@ -3,6 +3,7 @@ import { getproduits } from "../api/produits";
 import { Link } from "react-router-dom";
 import Filtre from "../components/Filtre";
 import GetUsager from "../components/GetUsager";
+import Recherche from "../components/Recherche";
 
 /**
  * Fonction qui liste le catalogue de bouteilles
@@ -13,6 +14,7 @@ const Catalogue = () => {
 	const [totalPages, setTotalPages] = useState(1);
 	const [filtre, setFiltre] = useState({ identite: null, pays: null });
 	const [ordre, setOrdre] = useState("");
+	const [recherche, setRecherche] = useState("");
 
 	// Obtenir les infos de l'usager 
 	const user = GetUsager();
@@ -57,6 +59,11 @@ const Catalogue = () => {
 		<div className="contenu"> 
 			<p className="flex justify-end mb-15 text-sm">{user ? `Bienvenue ${user.name} !` : ""}</p>
 			<h1 className="mt-10 mb-6 text-4xl text-bold text-center">Catalogue</h1>
+			{user && (
+                <div className="flex items-center w-full mb-4 recherche_catalogue">
+                    <Recherche recherche={recherche} setRecherche={setRecherche} />
+                </div>
+            )}
 			<Filtre filtre={filtre} setFiltre={setFiltre} ordre={ordre} setOrdre={setOrdre} setproduits={setproduits}/>		
 			<div className="grilleBouteille">
 				{Array.isArray(produits) && produits.map((p) => (				
@@ -66,7 +73,7 @@ const Catalogue = () => {
 						<div className="carteContenu">
 							<h3 className="font-bold">{p.name} {p.millesime_produit}</h3>
 							<p>{p.identite_produit} - {p.pays_origine}</p>
-							<p className="font-bold">{Number(p.price).toFixed(2)} $</p>	
+							<p className="font-bold ">{Number(p.price).toFixed(2)} $</p>	
 							<div className="carteBouton flex justify-between items-center">								
 								<button className="bg-lime-700 border-transparent hover:bg-lime-800 p-2 rounded-md mt-4 " id="ajoutBouteille">
 									<Link className="block " to={`/produits/${p.id}`}>

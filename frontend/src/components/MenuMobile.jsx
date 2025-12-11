@@ -13,12 +13,12 @@ export default function MenuMobile() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full h-16 bg-red-950 border-t shadow-xl z-50 px-6">
+    <>
+    {token && user && (
+    <nav className="fixed bottom-0 left-0 w-full h-16 bg-red-950 shadow-xl z-50 px-6">
       <ul className="flex justify-between items-center h-full">
 
         {/* ===== Accueil / Catalogue ===== */}
-        {token && user && (
-          <>
             <li className="flex-1 text-center">
               <Link
                 to="/produits"
@@ -80,9 +80,6 @@ export default function MenuMobile() {
                     <span className="text-xs mt-1">Achats</span>
               </Link>
             </li>
-          </>
-        )}
-
         {/* ===== Si NON connecté → montrer seulement “Compte” ===== */}
         {!token && !user && (
           <li className="flex-1 text-center">
@@ -97,5 +94,7 @@ export default function MenuMobile() {
         )}
       </ul>
     </nav>
+    )}
+  </>
   );
 }
