@@ -8,14 +8,7 @@ use App\Models\Cellier;
 
 class CellierController extends Controller
 {
-    /*public function index($userId)
-    {
-        $celliers = Cellier::where('user_id', $userId)->get();
-        return response()->json($celliers);
-    }*/
-
-    public function produits($cellierId)
-    {
+    public function produits($cellierId) {
         $cellier = Cellier::with('produits')->findOrFail($cellierId);
         return response()->json($cellier->produits);
     }

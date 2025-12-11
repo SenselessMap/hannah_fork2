@@ -9,10 +9,10 @@ use App\Models\Produit;
 class ProduitController extends Controller
 {
   
-        /**
-         * @param
-         * Fonction qui affiche toutes les bouteilles du catalogue, si la bouteille a une couleur, on l'affiche. On ajoute une pagination de 12 bouteilles par page, on peut avancer, reculer, aller à la fin ou au début de la pagination.
-         */
+    /**
+     * @param
+     * Fonction qui affiche toutes les bouteilles du catalogue, si la bouteille a une couleur, on l'affiche. On ajoute une pagination de 12 bouteilles par page, on peut avancer, reculer, aller à la fin ou au début de la pagination.
+     */
 
     public function index(Request $request) {
         $identite = $request->get('identite');
