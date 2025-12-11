@@ -3,12 +3,9 @@ import api from "../api/axios";
 import FicheProduitCellier from "./FicheProduitCellier";
 import ModalAjouter from "./ModalAjouter";
 import ModalErreur from "./ModalErreur";
-import ModalViderCellier from "./ModalViderCellier";
 import ModalSupprimerCellier from "./ModalSupprimerCellier";
-import ModalDeplacerBouteille from "./ModalDeplacerBouteille";
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
-import { GiGrapes } from "react-icons/gi";
 import { GiBarrel } from "react-icons/gi";
  
 
@@ -22,7 +19,6 @@ const AfficheCellier = () => {
     const [afficherFormAjoutCellier, setAfficherFormAjoutCellier] = useState(false); // toggle afficher/cacher le formulaire d'ajout
     const [afficherFormModifCellier, setAfficherFormModifCellier] = useState(false); // toggle afficher/cacher le formulaire de modif
     const [afficherFormSupprimerCellier, setAfficherFormSupprimerCellier] = useState(false) // toggle afficher/cacher le formulaire de suppression de cellier
-    const [afficherFormDeplacerBouteille, setAfficherFormDeplacerBouteille] = useState(false) // toggle afficher/cacher le formulaire de suppression de cellier
     const [nomCellier, setNomCellier] = useState("");
     const [nomCellierModif, setNomCellierModif] = useState("");
     const [nomCellierSup, setNomCellierSup] = useState("");
@@ -30,13 +26,13 @@ const AfficheCellier = () => {
     const [erreurs, setErreurs] = useState({});
     const [message, setMessage] = useState("");
     const [messageAjout, setMessageAjout] = useState("");
+    const [messageErreur, setMessageErreur] = useState("");
     const [messageViderCellier, setMessageViderCellier] = useState("");
     const [messageSupprimerCellier, setMessageSupprimerCellier] = useState("");
     const [modalAjouterVisible, setModalAjouterVisible] = useState(false); // affiche la boite modale d'ajout et quantité
     const [modalErreurVisible, setModalErreurVisible] = useState(false);
     const [modalSupprimerCellierVisible, setModalSupprimerCellierVisible] = useState(false);
     const [modalViderCellierVisible, setModalViderCellierVisible] = useState(false);
-    const [modalDeplacerBouteilleVisible, setModalDeplacerBouteilleVisible] = useState(false);
     const [chargementSupprimer, setChargementSupprimer] = useState(false);
 
     useEffect(() => {
@@ -82,18 +78,21 @@ const AfficheCellier = () => {
         setMessage("");
         
         if (!nomCellier.trim()) {
-            setErreurs({ nom: "Le nom du cellier est requis." });
-            return;
-        }
+            setMessageErreur("Le nom du cellier est requis.");
+            setModalErreurVisible(true);
+            setTimeout(() => setModalErreurVisible(false), 3000);
+        return;
+}
 
         try {
             const reponse = await api.post("/celliers", { nom: nomCellier });
             
             setNomCellier("");
             setMessageAjout(reponse.data.message || "Cellier créé avec succès !");
+            setMessageErreur(reponse.data.message || "Vous devez choisir un nom !")
             setModalAjouterVisible(true);
 
-            // Fermer la modal après 5 secondes
+            // Fermer la modal après 5 secondes            
             setTimeout(() => setModalAjouterVisible(false), 3000);
 
             // Fermer le formulaire
@@ -158,24 +157,6 @@ const AfficheCellier = () => {
             }
         }
     };
-
-    // Déplacer le cellier
-
-    const deplacerBouteille = async () => {
-        try {
-            await api.put(`/produits/${produit.id}/deplacer`, {
-                nouveau_cellier_id: nouveauCellier
-            });
-
-            setModalDeplacement(false);
-            rafraichirCelliers(); // recharge les données
-            alert("Bouteille déplacée !");
-        } catch (error) {
-            console.error(error);
-            alert("Erreur lors du déplacement");
-        }
-    };
-
     
 // Supprimer cellier
     const supprimerCellier = async () => {
@@ -216,7 +197,6 @@ const AfficheCellier = () => {
     
 
     // Pagination
-
     const changerPage = (cellierId, direction) => {
         setPagination(prev => {
         const page = prev[cellierId] || 0;
@@ -230,11 +210,6 @@ const AfficheCellier = () => {
         const end = start + produitsParPageCellier;
         return cellier.produits.slice(start, end);
     };
-
-    {/* Animations 3 points pour le chargement de la page */}
-	//if (!celliers) return <div className="points"> 
-		//<span></span><span></span><span></span>
-	//</div>;
 
     return (
         <div className="flex justify-center align-col px-3 py-4">                        
@@ -329,10 +304,7 @@ const AfficheCellier = () => {
                                     value={nomCellier}
                                     onChange={(e) => setNomCellier(e.target.value)}
                                     />
-                                    {erreurs.nom && <p className="text-red-500 pt-2">{erreurs.nom[0]}</p>}
-                                </div>                                
-                                {messageAjout}
-                                
+                                </div>
                                 <input
                                 className="bouton-accent"
                                 type="submit"
@@ -477,7 +449,7 @@ const AfficheCellier = () => {
                 />
                 <ModalErreur
                     visible={modalErreurVisible}
-                    erreurs={erreurs}
+                    messageErreur={messageErreur}
                     onFermer={() => setModalErreurVisible(false)}
                 />
                 {/* MODAL SUPPRIMER */}

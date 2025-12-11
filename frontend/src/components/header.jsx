@@ -19,7 +19,7 @@ export default function Header({deconnexion, recherche, setRecherche }) {
       {/* ===== HEADER DESKTOP ===== */}
       <header className="bg-white py-4 px-6 shadow flex justify-between items-center">
 
-        <h2 className="text-3xl font-serif text-red-950">Vino</h2>
+        <h2 className="text-3xl font-serif titre"><img className="v-titre" src='/images/Vino_Rouge.png'></img>ino</h2>
 
         {/* BARRE DE RECHERCHE */}
         {token && (

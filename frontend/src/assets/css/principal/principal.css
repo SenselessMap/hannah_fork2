@@ -3,7 +3,8 @@
 @import "tailwindcss";
 
 :root{
-  --couleur-accent: #96384F;
+  /* --couleur-accent: #96384F; */
+  --couleur-accent: #7c9838;
   --couleur-text: #450C1B;
   --couleur-form: #450c1b3e;
   --couleur-fond: #f8f3f3;
@@ -14,7 +15,9 @@
 
 body{
   background-color: var(--couleur-fond);
+  padding-bottom: 60px;
 }
+
 p, span, a, button, select, option, input .bouton-vin {
   
   font-family: "Poppins", sans-serif;

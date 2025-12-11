@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
 import GetUsager from "../components/GetUsager"
@@ -14,6 +14,7 @@ import GetUsager from "../components/GetUsager"
     const [produit, setProduit] = useState(null); 
 
     const user = GetUsager();
+    const navigate = useNavigate();
 
        // Récupérer le produit
     useEffect(() => {
@@ -43,8 +44,8 @@ import GetUsager from "../components/GetUsager"
     return (
         
         <div className="container mx-auto p-4">
-            <h1 className="text-center mt-20 text-4xl lg:text-5xl">Fiche détaillée</h1>
-            <h1 className="text-center text-3xl md:text-4xl mt-5 mb-10"><strong>{produit.name}</strong></h1>
+            <h1 className="text-center mt-20 text-3xl">Fiche détaillée</h1>
+            <h2 className="text-center text-2xl mt-5 mb-10"><strong>{produit.name}</strong></h2>
             <hr className="border-t-1 border-dashed bouton-[var(--couleur-texte)] mt-15 mb-15 my-4" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 <div className="flex justify-center">            

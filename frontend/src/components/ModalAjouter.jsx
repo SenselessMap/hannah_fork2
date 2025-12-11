@@ -1,4 +1,4 @@
-const ModaleAjouter = ({visible, messageAjout, onFermer}) => {
+const ModaleAjouter = ({visible, messageAjout, erreurs, onFermer}) => {
     if (!visible) return null;
 
     return (
@@ -6,6 +6,7 @@ const ModaleAjouter = ({visible, messageAjout, onFermer}) => {
             <div className="w-full p-6 rounded-lg shadow-lg w-80">                
                 <div className="flex col justify-center gap-2">
                     <p className="text-center text-[var(--couleur-text)] font-bold text-2xl">{messageAjout}</p>
+                    <p className="text-center text-red font-bold text-2xl">{erreurs}</p>
                     <button
                         onClick={onFermer}
                         className="px-4 py-2 rounded bg-[var(--couleur-text)] text-white cursor-pointer"

@@ -132,3 +132,16 @@ Aucun autre fichier ne devrait avoir ces variables :root suivantes.
     color: var(--rose_vino);
     opacity: 0.5;
 }
+
+.titre {
+    color: #b5121b;
+    display: flex;
+    padding: 10px 0 0 15px;
+}
+
+.v-titre {
+    height: 70px; width: auto;
+    position: absolute;
+    top: 8px;
+    left: 4px;
+}
