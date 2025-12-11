@@ -46,15 +46,11 @@ function App() {
           <Route path="/produits" element={<Catalogue />} />
           <Route path="/produits/:id" element={<FicheProduit />} />
 
-          {/* Liste d’achats */}
-          <Route path="/liste-achats" element={<ListeAchats />} />
-
           {/* Celliers */}
            <Route path="/celliers" element={<CellierUtilisateur />} />
           <Route path="/user/:id/celliers" element={<CellierUtilisateur />} />
           <Route path="/cellier/creer" element={<CreerCellier />} />
           <Route path="/user/:userId/celliers/produits/:produitId" element={<AjouterProduitCellier />} />
-
 
           {/* Liste d’achats */}
           <Route path="/liste-achats" element={<ListeAchats />} />
