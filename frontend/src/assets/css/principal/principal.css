@@ -14,7 +14,6 @@
 
 body{
   background-color: var(--couleur-fond);
-  padding-bottom: 60px;
 }
 
 p, span, a, button, select, option, input .bouton-vin {
