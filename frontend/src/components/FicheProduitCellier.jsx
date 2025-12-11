@@ -21,7 +21,7 @@ return (
         className="w-full mt-3 bouton-vin p-4 text-white py-2 mb-3 rounded-lg text-sm md:text-lg lg:text-xl cursor-pointer"
         >
         Déguster ce vin
-        </button>
+        </button>        
         <button
         onClick={onDeplace}
         className="w-full mt-3 bouton-vin p-4 text-white py-2 mb-15 rounded-lg text-sm md:text-lg lg:text-xl cursor-pointer"

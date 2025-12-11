@@ -11,14 +11,12 @@ import CreerCellier from "./pages/CreerCellier";
 import ListeAchats from "./pages/ListeAchats";
 
 // Composants
-import Header from "./components/header";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 import MenuMobile from "./components/MenuMobile";
 import CompteUsager from "./components/CompteUsager";
 import CellierUtilisateur from "./components/CellierUtilisateur";
 import MotDePasseOublie from "./pages/MotDePasseOublie";
-
-import ListeAchats from "./pages/ListeAchats";
 import "./App.css";
 
 function App() {
