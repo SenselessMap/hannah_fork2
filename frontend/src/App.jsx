@@ -27,15 +27,6 @@ function App() {
     !!localStorage.getItem("token") || !!sessionStorage.getItem("token")
   );
 
-
-     useEffect(() => {
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (token) {
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-  }, [isAuth]);
-
   const [recherche, setRecherche] = useState(""); 
 
   return (
